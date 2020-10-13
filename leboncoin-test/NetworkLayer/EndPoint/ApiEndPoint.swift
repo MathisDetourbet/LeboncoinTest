@@ -1,5 +1,5 @@
 //
-//  ApiEndPoints.swift
+//  HTTPEndPoint.swift
 //  leboncoin-test
 //
 //  Created by Mathis Detourbet on 13/10/20.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ApiEndPoint: CustomStringConvertible {
+enum HTTPEndPoint: CustomStringConvertible {
     case advertisementsList
     case advertisementsCategories
     
