@@ -98,11 +98,14 @@
 			isa = PBXGroup;
 			children = (
 				51C447E8253492DC0058C7D8 /* AppDelegate.swift */,
+				51C448322535AEAA0058C7D8 /* Features */,
+				51C448382535AF570058C7D8 /* NetworkLayer */,
+				51C448472535B1EC0058C7D8 /* Models */,
+				51C448492535B3250058C7D8 /* Utils */,
+				51C448352535AF010058C7D8 /* Resources */,
 				51C447EC253492DC0058C7D8 /* ViewController.swift */,
 				51C447EE253492DC0058C7D8 /* Main.storyboard */,
-				51C447F1253492DE0058C7D8 /* Assets.xcassets */,
 				51C447F3253492DE0058C7D8 /* LaunchScreen.storyboard */,
-				51C447F6253492DE0058C7D8 /* Info.plist */,
 			);
 			path = "leboncoin-test";
 			sourceTree = "<group>";
@@ -123,6 +126,115 @@
 				51C4480C253492DE0058C7D8 /* Info.plist */,
 			);
 			path = "leboncoin-testUITests";
+			sourceTree = "<group>";
+		};
+		51C448322535AEAA0058C7D8 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				51C448332535AEB40058C7D8 /* AdvertisementList */,
+				51C448342535AED60058C7D8 /* AdvertisementDetails */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		51C448332535AEB40058C7D8 /* AdvertisementList */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AdvertisementList;
+			sourceTree = "<group>";
+		};
+		51C448342535AED60058C7D8 /* AdvertisementDetails */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AdvertisementDetails;
+			sourceTree = "<group>";
+		};
+		51C448352535AF010058C7D8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				51C448372535AF1E0058C7D8 /* Metadata */,
+				51C448362535AF160058C7D8 /* Images */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		51C448362535AF160058C7D8 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				51C447F1253492DE0058C7D8 /* Assets.xcassets */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		51C448372535AF1E0058C7D8 /* Metadata */ = {
+			isa = PBXGroup;
+			children = (
+				51C447F6253492DE0058C7D8 /* Info.plist */,
+			);
+			path = Metadata;
+			sourceTree = "<group>";
+		};
+		51C448382535AF570058C7D8 /* NetworkLayer */ = {
+			isa = PBXGroup;
+			children = (
+				51C448442535B0CA0058C7D8 /* Configuration */,
+				51C448462535B1970058C7D8 /* EndPoint */,
+				51C448452535B10E0058C7D8 /* Error */,
+			);
+			path = NetworkLayer;
+			sourceTree = "<group>";
+		};
+		51C448442535B0CA0058C7D8 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		51C448452535B10E0058C7D8 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		51C448462535B1970058C7D8 /* EndPoint */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = EndPoint;
+			sourceTree = "<group>";
+		};
+		51C448472535B1EC0058C7D8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				51C448482535B2040058C7D8 /* com.githubusercontent */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		51C448482535B2040058C7D8 /* com.githubusercontent */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = com.githubusercontent;
+			sourceTree = "<group>";
+		};
+		51C448492535B3250058C7D8 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				51C4484A2535B3A30058C7D8 /* ImageDownloader */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		51C4484A2535B3A30058C7D8 /* ImageDownloader */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ImageDownloader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
