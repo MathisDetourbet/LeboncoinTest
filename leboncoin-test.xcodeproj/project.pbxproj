@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		51C447E9253492DC0058C7D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C447E8253492DC0058C7D8 /* AppDelegate.swift */; };
-		51C447EB253492DC0058C7D8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C447EA253492DC0058C7D8 /* SceneDelegate.swift */; };
 		51C447ED253492DC0058C7D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C447EC253492DC0058C7D8 /* ViewController.swift */; };
 		51C447F0253492DC0058C7D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51C447EE253492DC0058C7D8 /* Main.storyboard */; };
 		51C447F2253492DE0058C7D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51C447F1253492DE0058C7D8 /* Assets.xcassets */; };
@@ -37,7 +36,6 @@
 /* Begin PBXFileReference section */
 		51C447E5253492DC0058C7D8 /* leboncoin-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "leboncoin-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		51C447E8253492DC0058C7D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		51C447EA253492DC0058C7D8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		51C447EC253492DC0058C7D8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		51C447EF253492DC0058C7D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		51C447F1253492DE0058C7D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -100,7 +98,6 @@
 			isa = PBXGroup;
 			children = (
 				51C447E8253492DC0058C7D8 /* AppDelegate.swift */,
-				51C447EA253492DC0058C7D8 /* SceneDelegate.swift */,
 				51C447EC253492DC0058C7D8 /* ViewController.swift */,
 				51C447EE253492DC0058C7D8 /* Main.storyboard */,
 				51C447F1253492DE0058C7D8 /* Assets.xcassets */,
@@ -260,7 +257,6 @@
 			files = (
 				51C447ED253492DC0058C7D8 /* ViewController.swift in Sources */,
 				51C447E9253492DC0058C7D8 /* AppDelegate.swift in Sources */,
-				51C447EB253492DC0058C7D8 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +435,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6THKG3RZCV;
 				INFOPLIST_FILE = "leboncoin-test/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -458,6 +455,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6THKG3RZCV;
 				INFOPLIST_FILE = "leboncoin-test/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
