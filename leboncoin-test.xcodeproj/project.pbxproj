@@ -23,6 +23,7 @@
 		51C4489C2535C0540058C7D8 /* HTTPRequestProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C4489B2535C0540058C7D8 /* HTTPRequestProperties.swift */; };
 		51C448A12535C1100058C7D8 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C448A02535C1100058C7D8 /* HTTPMethod.swift */; };
 		51C448A92535C12A0058C7D8 /* HTTPHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C448A82535C12A0058C7D8 /* HTTPHeaders.swift */; };
+		51C448C52535C3F70058C7D8 /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C448C42535C3F70058C7D8 /* HTTPError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		51C4489B2535C0540058C7D8 /* HTTPRequestProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestProperties.swift; sourceTree = "<group>"; };
 		51C448A02535C1100058C7D8 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		51C448A82535C12A0058C7D8 /* HTTPHeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeaders.swift; sourceTree = "<group>"; };
+		51C448C42535C3F70058C7D8 /* HTTPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,8 +199,8 @@
 		51C448382535AF570058C7D8 /* NetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
-				51C448832535BBDD0058C7D8 /* Configuration.swift */,
 				51C448952535C0100058C7D8 /* NetworkLayer.swift */,
+				51C448CC2535CC580058C7D8 /* Configuration */,
 				51C448BF2535C2F90058C7D8 /* HTTP */,
 			);
 			path = NetworkLayer;
@@ -207,6 +209,7 @@
 		51C448452535B10E0058C7D8 /* Error */ = {
 			isa = PBXGroup;
 			children = (
+				51C448C42535C3F70058C7D8 /* HTTPError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -316,6 +319,14 @@
 			isa = PBXGroup;
 			children = (
 				51C448882535BD0D0058C7D8 /* HTTPConfiguration.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		51C448CC2535CC580058C7D8 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				51C448832535BBDD0058C7D8 /* Configuration.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -454,6 +465,7 @@
 				51C448842535BBDD0058C7D8 /* Configuration.swift in Sources */,
 				51C4488E2535BE1A0058C7D8 /* HTTPEndPoint.swift in Sources */,
 				51C4489C2535C0540058C7D8 /* HTTPRequestProperties.swift in Sources */,
+				51C448C52535C3F70058C7D8 /* HTTPError.swift in Sources */,
 				51C447E9253492DC0058C7D8 /* AppDelegate.swift in Sources */,
 				51C448962535C0100058C7D8 /* NetworkLayer.swift in Sources */,
 				51C4484F2535B4BA0058C7D8 /* AdvertisementModel.swift in Sources */,
