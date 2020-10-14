@@ -14,5 +14,5 @@ protocol Configuration {
 }
 
 extension Configuration {
-    var baseUrl: String { netProtocol + domain + path }
+    var urlScheme: URL { URL(string: "\(netProtocol)\(domain)\(path)")! }
 }

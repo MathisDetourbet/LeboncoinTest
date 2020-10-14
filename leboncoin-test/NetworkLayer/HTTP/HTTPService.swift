@@ -22,7 +22,7 @@ final class HTTPService: NetworkLayer {
         } catch let nsError as NSError {
             return completion(.failure(HTTPError.makeFromNSError(nsError)))
         }
-        
+
         let task = session.dataTask(with: urlRequest) { (data, response, error) in
             // HTTP request will always respond with a response of type HTTPURLResponse
             let httpResponse = response as! HTTPURLResponse
