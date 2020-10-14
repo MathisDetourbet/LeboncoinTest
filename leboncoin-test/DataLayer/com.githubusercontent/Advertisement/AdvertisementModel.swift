@@ -19,7 +19,8 @@ struct AdvertisementModel {
 }
 
 extension AdvertisementModel: Decodable {
-    enum AdvertisementModelKeys: String, CodingKey {
+    
+    private enum CodingKeys: String, CodingKey {
         case id
         case categoryId = "categoryId"
         case title
@@ -28,18 +29,5 @@ extension AdvertisementModel: Decodable {
         case imagesUrl = "images_url"
         case creationDate = "creation_date"
         case isUrgent = "is_urgent"
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container =     try decoder.container(keyedBy: AdvertisementModelKeys.self)
-        
-        self.id =           try container.decode(UInt.self, forKey: .id)
-        self.categoryId =   try container.decode(UInt.self, forKey: .categoryId)
-        self.title =        try container.decode(String.self, forKey: .title)
-        self.description =  try container.decode(String.self, forKey: .description)
-        self.price =        try container.decode(UInt.self, forKey: .price)
-        self.imagesUrl =    try container.decode(ImageModel.self, forKey: .imagesUrl)
-        self.creationDate = try container.decode(String.self, forKey: .creationDate)
-        self.isUrgent =     try container.decode(Bool.self, forKey: .isUrgent)
     }
 }
