@@ -14,7 +14,7 @@ enum HTTPError: LocalizedError {
     case internalServerError    // code 5xx
     case decodingError
     case noResponseData
-    case unknown(Error?)
+    case unknown(Error)
     
     private static func makeFromErrorStatusCode(_ statusCode: Int) -> HTTPError {
         switch statusCode {
@@ -30,7 +30,22 @@ enum HTTPError: LocalizedError {
         return makeFromErrorStatusCode(httpResponse.statusCode)
     }
     
-    static func makeFromNSError(_ error: NSError) -> HTTPError {
-        return makeFromErrorStatusCode((error as NSError).code)
+    static func makeFromNSError(_ nsError: NSError) -> HTTPError {
+        return makeFromErrorStatusCode(nsError.code)
+    }
+}
+
+extension HTTPError: Equatable {
+    static func == (lhs: HTTPError, rhs: HTTPError) -> Bool {
+        switch (lhs, rhs) {
+        case (.badRequest, .badRequest):                    return true
+        case (.decodingError, .decodingError):              return true
+        case (.unauthorized, .unauthorized):                return true
+        case (.notFound, .notFound):                        return true
+        case (.internalServerError, .internalServerError):  return true
+        case (.noResponseData, .noResponseData):            return true
+        case (.unknown(_), .unknown(_)):                    return true
+        default:                                            return false
+        }
     }
 }
