@@ -14,13 +14,23 @@ enum HTTPError: LocalizedError {
     case internalServerError    // code 5xx
     case decodingError
     case noResponseData
-    case unknown(Error)
+    case unknown(Error?)
     
-    static func makeFromError(_ error: Error) -> HTTPError {
-        if error is HTTPError {
-            return error as! HTTPError
-        } else {
-            return HTTPError.unknown(error)
+    private static func makeFromErrorStatusCode(_ statusCode: Int) -> HTTPError {
+        switch statusCode {
+        case 400:       return .badRequest
+        case 401:       return .unauthorized
+        case 404:       return .notFound
+        case 500..<600: return .internalServerError
+        default:        return .unknown(NSError(domain: "unknown error", code: statusCode, userInfo: nil))
         }
+    }
+    
+    static func makeFromHTTPURLResponse(_ httpResponse: HTTPURLResponse) -> HTTPError {
+        return makeFromErrorStatusCode(httpResponse.statusCode)
+    }
+    
+    static func makeFromNSError(_ error: NSError) -> HTTPError {
+        return makeFromErrorStatusCode((error as NSError).code)
     }
 }
