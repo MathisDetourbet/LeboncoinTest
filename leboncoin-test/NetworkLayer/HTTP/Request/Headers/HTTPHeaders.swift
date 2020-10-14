@@ -7,4 +7,4 @@
 
 import Foundation
 
-typealias HTTPHeaders = [String: Any]
+typealias HTTPHeaders = [String: String]

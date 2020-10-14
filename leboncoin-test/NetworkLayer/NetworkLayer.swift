@@ -7,6 +7,11 @@
 
 import Foundation
 
+typealias NetworkCompletion<T: Decodable, U: Error> = (Result<T, U>) -> Void
+
 protocol NetworkLayer {
-    func sendRequest<T: Decodable>(with properties: RequestProperties) -> Result<T, Error>
+    associatedtype Request: NetworkRequest
+    associatedtype Err: Error
+    
+    func sendRequest<T: Decodable>(_ request: Request, completion: @escaping NetworkCompletion<T, Err>)
 }
