@@ -37,6 +37,7 @@
 		51E2369F2538984E00F48232 /* CurrencyFormattor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E2369E2538984E00F48232 /* CurrencyFormattor.swift */; };
 		51E236AB25389D8900F48232 /* AdvertisementListBusinessService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E236AA25389D8900F48232 /* AdvertisementListBusinessService.swift */; };
 		51E236B32538A6CC00F48232 /* BusinessError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E236B22538A6CC00F48232 /* BusinessError.swift */; };
+		51E236BC2538AE9C00F48232 /* UIAlertController+BusinessError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E236BB2538AE9C00F48232 /* UIAlertController+BusinessError.swift */; };
 		51E70B67253856E500E89A0E /* NavCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E70B66253856E500E89A0E /* NavCoordinator.swift */; };
 		51E70B70253858B300E89A0E /* AdvertisementCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E70B6F253858B300E89A0E /* AdvertisementCollectionViewCell.swift */; };
 		51E8CC4C2536F94400DC5627 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51E8CC4A2536F94300DC5627 /* LaunchScreen.storyboard */; };
@@ -99,6 +100,7 @@
 		51E2369E2538984E00F48232 /* CurrencyFormattor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFormattor.swift; sourceTree = "<group>"; };
 		51E236AA25389D8900F48232 /* AdvertisementListBusinessService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementListBusinessService.swift; sourceTree = "<group>"; };
 		51E236B22538A6CC00F48232 /* BusinessError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessError.swift; sourceTree = "<group>"; };
+		51E236BB2538AE9C00F48232 /* UIAlertController+BusinessError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+BusinessError.swift"; sourceTree = "<group>"; };
 		51E70B66253856E500E89A0E /* NavCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavCoordinator.swift; sourceTree = "<group>"; };
 		51E70B6F253858B300E89A0E /* AdvertisementCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementCollectionViewCell.swift; sourceTree = "<group>"; };
 		51E8CC4B2536F94300DC5627 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -197,8 +199,8 @@
 			isa = PBXGroup;
 			children = (
 				51E8CC5A2536FB2500DC5627 /* AdvertisementListViewController.swift */,
-				51E236A925389D7300F48232 /* BusinessService */,
 				51E70B7825386B9700E89A0E /* DataAccess */,
+				51E236A925389D7300F48232 /* BusinessService */,
 				51E70B7725386B8700E89A0E /* ViewModels */,
 				51E70B6E2538589E00E89A0E /* Cell */,
 			);
@@ -288,7 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				51E236852538907C00F48232 /* Foundation */,
-				51E236842538906700F48232 /* Views */,
+				51E236C02538B60800F48232 /* UIKit */,
 				51C4484A2535B3A30058C7D8 /* ImageDownloader */,
 			);
 			path = Utils;
@@ -482,6 +484,23 @@
 			path = BusinessService;
 			sourceTree = "<group>";
 		};
+		51E236BA2538AE8B00F48232 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				51E236BB2538AE9C00F48232 /* UIAlertController+BusinessError.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
+		51E236C02538B60800F48232 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				51E236842538906700F48232 /* Views */,
+				51E236BA2538AE8B00F48232 /* Alert */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
 		51E70B65253856CB00E89A0E /* NavigationLayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -672,6 +691,7 @@
 				51E236672538873B00F48232 /* CategoryModel.swift in Sources */,
 				51E236AB25389D8900F48232 /* AdvertisementListBusinessService.swift in Sources */,
 				51C448582535B5890058C7D8 /* ImageModel.swift in Sources */,
+				51E236BC2538AE9C00F48232 /* UIAlertController+BusinessError.swift in Sources */,
 				51E236962538983C00F48232 /* DateFormattor.swift in Sources */,
 				51D761C72536E4DE00091C6F /* URLRequest+HTTPRequest.swift in Sources */,
 				51C448A92535C12A0058C7D8 /* HTTPHeaders.swift in Sources */,

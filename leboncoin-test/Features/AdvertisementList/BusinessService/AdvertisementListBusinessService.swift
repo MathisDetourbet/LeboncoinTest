@@ -23,7 +23,8 @@ class AdvertisementListBusinessService: IAdvertisementListBusinessService {
             completion(
                 result.map { models -> [AdvertisementEntity] in
                     models.map(AdvertisementEntity.init)
-                }.mapError { httpError -> BusinessError in
+                }
+                .mapError { httpError -> BusinessError in
                     BusinessError.makeFromHttpError(httpError)
                 }
             )

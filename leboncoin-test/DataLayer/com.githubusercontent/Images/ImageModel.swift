@@ -8,8 +8,8 @@
 import Foundation
 
 struct ImageModel {
-    let small: String
-    let thumb: String
+    let small: String?
+    let thumb: String?
 }
 
 extension ImageModel: Decodable {}

@@ -118,6 +118,8 @@ final class AdvertisementCollectionViewCell: UICollectionViewCell {
                 bottomContainerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
             ]
         )
+        
+        setupBottomElements()
     }
     
     private func setupBottomElements() {

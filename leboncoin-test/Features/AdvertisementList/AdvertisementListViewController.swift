@@ -8,9 +8,7 @@
 import UIKit
 
 final class AdvertisementListViewController: UIViewController {
-    
     private var collectionView: UICollectionView!
-    
     private let viewModel: AdvertisementListViewModel
     
     init(viewModel: AdvertisementListViewModel) {
@@ -27,12 +25,33 @@ final class AdvertisementListViewController: UIViewController {
         super.viewDidLoad()
         
         setupView()
+        fillCollectionView()
     }
     
     private func setupView() {
         view.backgroundColor = .white
         
         collectionView = makeCollectionView()
+    }
+    
+    private func fillCollectionView() {
+        viewModel.fetchAdvertisementsList { [weak self] error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    self?.displayErrorAlert(with: error)
+                } else {
+                    self?.collectionView.reloadData()
+                }
+            }
+        }
+    }
+    
+    private func displayErrorAlert(with error: BusinessError) {
+        let dismissAction = UIAlertAction(title: "Got it!", style: .default) { [weak self] _ in
+            self?.dismiss(animated: true, completion: nil)
+        }
+        let alert = UIAlertController.makeBusinessErrorAlert(error, dismissAction: dismissAction)
+        present(alert, animated: true, completion: nil)
     }
 }
 
@@ -46,18 +65,9 @@ private extension AdvertisementListViewController {
         public static let collectionHorizontalInset: CGFloat = 5.0
     }
     
-    func sizeForItem() -> CGSize {
-        let numberOfItemByRow = CGFloat(CollectionViewLayoutProperties.numberOfItemByRow)
-        let collectionWidth = self.collectionView.frame.width
-        let itemWidth = (collectionWidth) / numberOfItemByRow - CollectionViewLayoutProperties.collectionHorizontalInset
-        let itemHeight = itemWidth * CollectionViewLayoutProperties.cellAspectRatio
-        
-        return CGSize(width: itemWidth, height: itemHeight)
-    }
-    
     func makeCollectionView() -> UICollectionView {
-        let collectionViewLayout = makeCollectionViewLayout()
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+        let collectionViewLayout = makeCollectionViewLayout(with: view.frame)
+        let collectionView = UICollectionView(frame: view.frame, collectionViewLayout: collectionViewLayout)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .white
@@ -71,24 +81,30 @@ private extension AdvertisementListViewController {
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
-//        collectionViewLayout.itemSize = sizeForItem()
-        
         collectionView.register(AdvertisementCollectionViewCell.self, forCellWithReuseIdentifier: AdvertisementCollectionViewCell.defaultReuseIdentifier)
         
         return collectionView
     }
     
-    func makeCollectionViewLayout() -> UICollectionViewFlowLayout {
+    func makeCollectionViewLayout(with collectionViewFrame: CGRect) -> UICollectionViewFlowLayout {
         let itemsHorizontalInset = CollectionViewLayoutProperties.minimumItemsSpacing
         
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = sizeForItem()
+        flowLayout.itemSize = sizeForItem(collectionViewWidth: collectionViewFrame.width)
         flowLayout.minimumInteritemSpacing = CollectionViewLayoutProperties.minimumItemsSpacing
         flowLayout.minimumLineSpacing = CollectionViewLayoutProperties.minimumItemsSpacing
         flowLayout.sectionInset = UIEdgeInsets(top: 0.0, left: itemsHorizontalInset, bottom: 0.0, right: itemsHorizontalInset)
         flowLayout.scrollDirection = .vertical
         
         return flowLayout
+    }
+    
+    func sizeForItem(collectionViewWidth: CGFloat) -> CGSize {
+        let numberOfItemByRow = CGFloat(CollectionViewLayoutProperties.numberOfItemByRow)
+        let itemWidth = (collectionViewWidth) / numberOfItemByRow - CollectionViewLayoutProperties.collectionHorizontalInset
+        let itemHeight = itemWidth * CollectionViewLayoutProperties.cellAspectRatio
+        
+        return CGSize(width: itemWidth, height: itemHeight)
     }
 }
 
@@ -104,7 +120,15 @@ extension AdvertisementListViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        fatalError()
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: AdvertisementCollectionViewCell.defaultReuseIdentifier, for: indexPath) as? AdvertisementCollectionViewCell else {
+            fatalError("Error cell dequeue")
+        }
+        
+        let uiModel = viewModel.elementAt(indexPath)
+        cell.fill(with: uiModel)
+        
+        return cell
     }
 }
 

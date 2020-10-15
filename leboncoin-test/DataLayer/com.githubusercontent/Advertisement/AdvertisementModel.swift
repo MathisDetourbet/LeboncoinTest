@@ -22,7 +22,7 @@ extension AdvertisementModel: Decodable {
     
     private enum CodingKeys: String, CodingKey {
         case id
-        case categoryId = "categoryId"
+        case categoryId = "category_id"
         case title
         case description
         case price
