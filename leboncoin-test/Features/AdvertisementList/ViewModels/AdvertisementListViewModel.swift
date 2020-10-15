@@ -8,9 +8,8 @@
 import Foundation
 
 final class AdvertisementListViewModel: CollectionViewModel {
-    internal var model: [AdvertisementViewModel]
-    
     let businessService: IAdvertisementListBusinessService
+    var model: [AdvertisementViewModel]
     
     init(businessService: IAdvertisementListBusinessService) {
         self.businessService = businessService
@@ -21,11 +20,27 @@ final class AdvertisementListViewModel: CollectionViewModel {
         businessService.fetchAdvertisementList { [weak self] (result: Result<[AdvertisementEntity], BusinessError>) in
             switch result {
             case .success(let advertisementsEntity):
-                self?.model = advertisementsEntity.map(AdvertisementViewModel.init)
+                let adsViewModels = advertisementsEntity.map(AdvertisementViewModel.init)
+                self?.model = AdvertisementListViewModel.sortedAdvertisementsList(ads: adsViewModels)
                 completion(nil)
             case .failure(let businessError):
                 completion(businessError)
             }
         }
+    }
+    
+    private static func sortedAdvertisementsList(ads: [AdvertisementViewModel]) -> [AdvertisementViewModel] {
+        // Sort by date first
+        let sortedByDate = ads.sorted { $0.creationDate < $1.creationDate }
+        
+        // Then, sort by isUrgent is true
+        let isUrgentSorted = sortedByDate.sorted {
+            switch ($0.isUrgent, $1.isUrgent) {
+            case (false, true): return false
+            default: return true
+            }
+        }
+        
+        return isUrgentSorted
     }
 }

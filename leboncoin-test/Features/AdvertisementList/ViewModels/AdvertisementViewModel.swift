@@ -10,8 +10,21 @@ import Foundation
 struct AdvertisementViewModel {
     let dataFormatter: DateFormattor & CurrencyFormattor = DataFormatter()
     let model: AdvertisementEntity
+    
+    var isUrgent: Bool { model.isUrgent }
+    
+    var creationDate: Date {
+        let creationDate: Date
+        do {
+            creationDate = try dataFormatter.date(from: model.creationDateString)
+        } catch {
+            creationDate = Date()
+        }
+        return creationDate
+    }
 }
 
+// MARK: - Advertisement cell UI model conformance: can fill this kind of cell
 extension AdvertisementViewModel: AdvertisementCellUIModel {
     var title: String                       { model.title }
     var adPictureUrl: URL?                  { model.imageEntity.smallImageUrl }
