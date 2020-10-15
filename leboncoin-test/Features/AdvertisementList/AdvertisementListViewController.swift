@@ -59,10 +59,12 @@ final class AdvertisementListViewController: UIViewController {
 private extension AdvertisementListViewController {
     
     enum CollectionViewLayoutProperties {
-        public static let numberOfItemByRow: Int = 2
-        public static let cellAspectRatio: CGFloat = 3/2
-        public static let minimumItemsSpacing: CGFloat = 0.0
-        public static let collectionHorizontalInset: CGFloat = 5.0
+        static let numberOfItemByRow:           Int = 2
+        static let cellAspectRatio:             CGFloat = 3/2
+        static let minimumItemsSpacing:         CGFloat = 5.0
+        static let minimumLineSpacing:          CGFloat = 5.0
+        static let collectionHorizontalInset:   CGFloat = 5.0
+        static let collectionViewMargins:       CGFloat = 5.0
     }
     
     func makeCollectionView() -> UICollectionView {
@@ -71,28 +73,32 @@ private extension AdvertisementListViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .white
-        view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(collectionView)
         
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: CollectionViewLayoutProperties.collectionViewMargins),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CollectionViewLayoutProperties.collectionViewMargins),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -CollectionViewLayoutProperties.collectionViewMargins),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -CollectionViewLayoutProperties.collectionViewMargins)
         ])
         
-        collectionView.register(AdvertisementCollectionViewCell.self, forCellWithReuseIdentifier: AdvertisementCollectionViewCell.defaultReuseIdentifier)
+        collectionView.register(
+            AdvertisementCollectionViewCell.self,
+            forCellWithReuseIdentifier: AdvertisementCollectionViewCell.defaultReuseIdentifier
+        )
         
         return collectionView
     }
     
-    func makeCollectionViewLayout(with collectionViewFrame: CGRect) -> UICollectionViewFlowLayout {
+    func makeCollectionViewLayout(with frame: CGRect) -> UICollectionViewFlowLayout {
         let itemsHorizontalInset = CollectionViewLayoutProperties.minimumItemsSpacing
+        let collectionViewWidth = frame.width - 3 * CollectionViewLayoutProperties.collectionViewMargins
         
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = sizeForItem(collectionViewWidth: collectionViewFrame.width)
+        flowLayout.itemSize = sizeForItem(collectionViewWidth: collectionViewWidth)
         flowLayout.minimumInteritemSpacing = CollectionViewLayoutProperties.minimumItemsSpacing
-        flowLayout.minimumLineSpacing = CollectionViewLayoutProperties.minimumItemsSpacing
+        flowLayout.minimumLineSpacing = CollectionViewLayoutProperties.minimumLineSpacing
         flowLayout.sectionInset = UIEdgeInsets(top: 0.0, left: itemsHorizontalInset, bottom: 0.0, right: itemsHorizontalInset)
         flowLayout.scrollDirection = .vertical
         
@@ -101,7 +107,7 @@ private extension AdvertisementListViewController {
     
     func sizeForItem(collectionViewWidth: CGFloat) -> CGSize {
         let numberOfItemByRow = CGFloat(CollectionViewLayoutProperties.numberOfItemByRow)
-        let itemWidth = (collectionViewWidth) / numberOfItemByRow - CollectionViewLayoutProperties.collectionHorizontalInset
+        let itemWidth = collectionViewWidth / numberOfItemByRow - CollectionViewLayoutProperties.collectionHorizontalInset
         let itemHeight = itemWidth * CollectionViewLayoutProperties.cellAspectRatio
         
         return CGSize(width: itemWidth, height: itemHeight)
