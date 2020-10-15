@@ -9,7 +9,7 @@ import UIKit
 
 final class RootCoordinator: NavCoordinator {
     // MARK: Controller in charge of Navigation
-    private let navigationController: UINavigationController
+    let navigationController: UINavigationController
     
     // MARK: Dependency property to inject
     private let httpService: HTTPService
