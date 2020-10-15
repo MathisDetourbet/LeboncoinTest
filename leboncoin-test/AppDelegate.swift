@@ -11,7 +11,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var rootCoordinator: RootCoordinator!
+    var rootCoordinator: NavCoordinator!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Init and setup window with a navigation controller
@@ -21,13 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.makeKeyAndVisible()
         self.window = window
         
-        startNavigation(with: navigationController)
+        startRootCoordinator(with: navigationController)
         
         return true
     }
     
-    private func startNavigation(with navigationController: UINavigationController) {
-        // Start root coordinator
+    private func startRootCoordinator(with navigationController: UINavigationController) {
+        // Start navigation with the initial view controller
         rootCoordinator = RootCoordinator(navigationController: navigationController)
         rootCoordinator.start()
     }
