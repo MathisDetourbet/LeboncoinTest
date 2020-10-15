@@ -18,7 +18,7 @@ struct AdvertisementEntity {
     
     var isUrgentImageName: String? {
         if isUrgent {
-            return ""
+            return "is_urgent"
         } else {
             return nil
         }

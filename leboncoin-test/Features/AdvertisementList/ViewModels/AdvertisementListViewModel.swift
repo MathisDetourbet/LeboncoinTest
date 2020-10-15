@@ -19,28 +19,41 @@ final class AdvertisementListViewModel: CollectionViewModel {
     func fetchAdvertisementsList(completion: @escaping (BusinessError?) -> Void) {
         businessService.fetchAdvertisementList { [weak self] (result: Result<[AdvertisementEntity], BusinessError>) in
             switch result {
+            
             case .success(let advertisementsEntity):
                 let adsViewModels = advertisementsEntity.map(AdvertisementViewModel.init)
                 self?.model = AdvertisementListViewModel.sortedAdvertisementsList(ads: adsViewModels)
                 completion(nil)
+                
             case .failure(let businessError):
                 completion(businessError)
             }
         }
     }
-    
-    private static func sortedAdvertisementsList(ads: [AdvertisementViewModel]) -> [AdvertisementViewModel] {
+}
+
+// MARK: - Business rule: sort ads by date and isUrgent equals true
+private extension AdvertisementListViewModel {
+    static func sortedAdvertisementsList(ads: [AdvertisementViewModel]) -> [AdvertisementViewModel] {
         // Sort by date first
-        let sortedByDate = ads.sorted { $0.creationDate < $1.creationDate }
+        let sortedByDate = AdvertisementListViewModel.sortedByDate(ads: ads)
         
-        // Then, sort by isUrgent is true
-        let isUrgentSorted = sortedByDate.sorted {
+        // Then, sort by isUrgent equals true
+        let sortedByIsUrgent = AdvertisementListViewModel.sortedByIsUrgent(ads: sortedByDate)
+        
+        return sortedByIsUrgent
+    }
+    
+    static func sortedByDate(ads: [AdvertisementViewModel]) -> [AdvertisementViewModel] {
+        return ads.sorted { $0.creationDate < $1.creationDate }
+    }
+    
+    static func sortedByIsUrgent(ads: [AdvertisementViewModel]) -> [AdvertisementViewModel] {
+        return ads.sorted {
             switch ($0.isUrgent, $1.isUrgent) {
             case (false, true): return false
             default: return true
             }
         }
-        
-        return isUrgentSorted
     }
 }

@@ -17,6 +17,6 @@ extension ImageEntity: ModelInitializable {
     init(from model: ImageModel) {
         self.smallImageUrl = URL(string: model.small ?? "")
         self.largeImageUrl = URL(string: model.thumb ?? "")
-        self.defaultImageName = "default_advertisement_image"
+        self.defaultImageName = "default_ad_image"
     }
 }

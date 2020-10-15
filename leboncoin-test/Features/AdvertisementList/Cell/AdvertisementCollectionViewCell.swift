@@ -53,8 +53,15 @@ final class AdvertisementCollectionViewCell: UICollectionViewCell {
     
     // MARK: View setup
     private func setupView() {
+        setupContentView()
         setupTopContainer()
         setupBottomContainer()
+    }
+    
+    private func setupContentView() {
+        contentView.backgroundColor = .lightGray
+        contentView.layer.cornerRadius = 5.0
+        contentView.clipsToBounds = true
     }
     
     // MARK: Top container setup
@@ -99,7 +106,8 @@ final class AdvertisementCollectionViewCell: UICollectionViewCell {
             [
                 isUrgentPictureImageView.leadingAnchor.constraint(equalTo: topContainerView.leadingAnchor),
                 isUrgentPictureImageView.bottomAnchor.constraint(equalTo: topContainerView.bottomAnchor),
-                isUrgentPictureImageView.heightAnchor.constraint(equalTo: isUrgentPictureImageView.widthAnchor, multiplier: 2.0)
+                isUrgentPictureImageView.heightAnchor.constraint(equalTo: isUrgentPictureImageView.widthAnchor, multiplier: 2.0),
+                isUrgentPictureImageView.widthAnchor.constraint(equalToConstant: topContainerView.frame.width / 2)
             ]
         )
     }
