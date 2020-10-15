@@ -19,6 +19,7 @@ protocol AdvertisementCellUIModel {
 
 // MARK: -  AdvertisementCollectionViewCell definition
 final class AdvertisementCollectionViewCell: UICollectionViewCell {
+    
     // MARK: Container Outlets
     private var topContainerView: UIView!
     private var bottomContainerView: UIView!
