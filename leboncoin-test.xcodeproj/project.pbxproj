@@ -24,6 +24,7 @@
 		51C448CE2535CCE40058C7D8 /* HTTPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C448CD2535CCE40058C7D8 /* HTTPService.swift */; };
 		51D761C72536E4DE00091C6F /* URLRequest+HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D761C62536E4DE00091C6F /* URLRequest+HTTPRequest.swift */; };
 		51E70B67253856E500E89A0E /* NavCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E70B66253856E500E89A0E /* NavCoordinator.swift */; };
+		51E70B70253858B300E89A0E /* AdvertisementCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E70B6F253858B300E89A0E /* AdvertisementCollectionViewCell.swift */; };
 		51E8CC4C2536F94400DC5627 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51E8CC4A2536F94300DC5627 /* LaunchScreen.storyboard */; };
 		51E8CC5B2536FB2500DC5627 /* AdvertisementListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E8CC5A2536FB2500DC5627 /* AdvertisementListViewController.swift */; };
 		51E8CC602536FB6500DC5627 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E8CC5F2536FB6500DC5627 /* RootCoordinator.swift */; };
@@ -71,6 +72,7 @@
 		51C448CD2535CCE40058C7D8 /* HTTPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPService.swift; sourceTree = "<group>"; };
 		51D761C62536E4DE00091C6F /* URLRequest+HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+HTTPRequest.swift"; sourceTree = "<group>"; };
 		51E70B66253856E500E89A0E /* NavCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavCoordinator.swift; sourceTree = "<group>"; };
+		51E70B6F253858B300E89A0E /* AdvertisementCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementCollectionViewCell.swift; sourceTree = "<group>"; };
 		51E8CC4B2536F94300DC5627 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		51E8CC5A2536FB2500DC5627 /* AdvertisementListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementListViewController.swift; sourceTree = "<group>"; };
 		51E8CC5F2536FB6500DC5627 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 		51C448332535AEB40058C7D8 /* AdvertisementList */ = {
 			isa = PBXGroup;
 			children = (
+				51E70B6E2538589E00E89A0E /* Cell */,
 				51E8CC5A2536FB2500DC5627 /* AdvertisementListViewController.swift */,
 				51B57CC725374BBA00FEEAEA /* AdvsertisementsListDataAccess.swift */,
 			);
@@ -375,6 +378,14 @@
 			path = NavigationLayer;
 			sourceTree = "<group>";
 		};
+		51E70B6E2538589E00E89A0E /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				51E70B6F253858B300E89A0E /* AdvertisementCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		51E8CC562536F96D00DC5627 /* LaunchScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -524,6 +535,7 @@
 				51C448582535B5890058C7D8 /* ImageModel.swift in Sources */,
 				51D761C72536E4DE00091C6F /* URLRequest+HTTPRequest.swift in Sources */,
 				51C448A92535C12A0058C7D8 /* HTTPHeaders.swift in Sources */,
+				51E70B70253858B300E89A0E /* AdvertisementCollectionViewCell.swift in Sources */,
 				51C448A12535C1100058C7D8 /* HTTPMethod.swift in Sources */,
 				51C448CE2535CCE40058C7D8 /* HTTPService.swift in Sources */,
 				51E70B67253856E500E89A0E /* NavCoordinator.swift in Sources */,
