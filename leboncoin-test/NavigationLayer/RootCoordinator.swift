@@ -7,7 +7,8 @@
 
 import UIKit
 
-final class RootCoordinator {
+final class RootCoordinator: NavCoordinator {
+    // MARK: Controller in charge of Navigation
     private let navigationController: UINavigationController
     
     // MARK: Dependency property to inject
@@ -22,6 +23,9 @@ final class RootCoordinator {
     
     func start() {
         let dataAccess = HTTPAdvsertisementsListDataAccessor(httpService: httpService, httpConfiguration: httpConfiguration)
+        let viewModel = AdvertisementListViewModel(dataAccessor: dataAccess)
+        let viewController = AdvertisementListViewController(viewModel: viewModel)
         
+        navigationController.setViewControllers([viewController], animated: true)
     }
 }
