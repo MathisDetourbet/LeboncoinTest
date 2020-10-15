@@ -15,6 +15,7 @@ final class DataFormatter {
     
     private lazy var currencyFormatter: NumberFormatter = {
         let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .currency
         numberFormatter.maximumFractionDigits = 2
         return numberFormatter
     }()
@@ -42,10 +43,10 @@ extension DataFormatter: CurrencyFormattor {
     }
     
     func currency(from unsignedInt: UInt) throws -> String {
-        guard let currency = currencyFormatter.number(from: String(unsignedInt)) else {
+        guard let currencyString = currencyFormatter.string(from: NSNumber(value: unsignedInt)) else {
             throw CurrencyFormatterError.badCurrencyNumber
         }
         
-        return currency.stringValue
+        return currencyString
     }
 }
