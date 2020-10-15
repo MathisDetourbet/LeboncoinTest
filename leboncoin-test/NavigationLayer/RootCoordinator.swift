@@ -23,7 +23,8 @@ final class RootCoordinator: NavCoordinator {
     
     func start() {
         let dataAccess = HTTPAdvsertisementsListDataAccessor(httpService: httpService, httpConfiguration: httpConfiguration)
-        let viewModel = AdvertisementListViewModel(dataAccessor: dataAccess)
+        let businessService = AdvertisementListBusinessService(dataAccessor: dataAccess)
+        let viewModel = AdvertisementListViewModel(businessService: businessService)
         let viewController = AdvertisementListViewController(viewModel: viewModel)
         
         navigationController.setViewControllers([viewController], animated: true)
