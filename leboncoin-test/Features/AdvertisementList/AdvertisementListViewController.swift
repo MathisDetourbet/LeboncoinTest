@@ -95,8 +95,12 @@ private extension AdvertisementListViewController {
 // MARK: - CollectionView DataSource
 extension AdvertisementListViewController: UICollectionViewDataSource {
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return viewModel.numberOfSections
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return viewModel.numberOfItemsIn(section)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

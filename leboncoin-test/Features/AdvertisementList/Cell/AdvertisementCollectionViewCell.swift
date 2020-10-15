@@ -12,9 +12,9 @@ protocol AdvertisementCellUIModel {
     var title: String { get }
     var price: String { get }
     var adPictureUrl: URL? { get }
-    var adDefaultPictureImage: UIImage { get }
-    var categoryPicture: UIImage { get }
-    var isUrgentPicture: UIImage? { get }
+    var adDefaultPictureImageName: String { get }
+    var categoryPictureImageName: String { get }
+    var isUrgentPictureImageName: String? { get }
 }
 
 // MARK: -  AdvertisementCollectionViewCell definition
@@ -161,9 +161,9 @@ extension AdvertisementCollectionViewCell {
     func fill(with uiModel: AdvertisementCellUIModel) {
         fillTitleLabel(with: uiModel.title)
         fillPriceLabel(with: uiModel.price)
-        fillCategoryPictureImageView(with: uiModel.categoryPicture)
-        fillAdPictureImageView(with: uiModel.adPictureUrl, or: uiModel.adDefaultPictureImage)
-        fillIsUrgentPicture(with: uiModel.isUrgentPicture)
+        fillCategoryPictureImageView(with: uiModel.categoryPictureImageName)
+        fillAdPictureImageView(with: uiModel.adPictureUrl, or: uiModel.adDefaultPictureImageName)
+        fillIsUrgentPicture(with: uiModel.isUrgentPictureImageName)
     }
 }
 
@@ -173,11 +173,11 @@ private extension AdvertisementCollectionViewCell {
         titleLabel.text = title
     }
     
-    func fillAdPictureImageView(with url: URL?, or defaultImage: UIImage) {
+    func fillAdPictureImageView(with url: URL?, or defaultImageName: String) {
         if let _ = url {
             // TODO: Use image downloader
         } else {
-            adPictureImageView.image = defaultImage
+            adPictureImageView.image = UIImage(named: defaultImageName)
         }
     }
     
@@ -185,13 +185,13 @@ private extension AdvertisementCollectionViewCell {
         priceLabel.text = price
     }
     
-    func fillCategoryPictureImageView(with image: UIImage) {
-        categoryPictureImageView.image = image
+    func fillCategoryPictureImageView(with imageName: String) {
+        categoryPictureImageView.image = UIImage(named: imageName)
     }
     
-    func fillIsUrgentPicture(with isUrgentImage: UIImage?) {
-        if let image = isUrgentImage {
-            isUrgentPictureImageView.image = image
+    func fillIsUrgentPicture(with isUrgentImageName: String?) {
+        if let imageName = isUrgentImageName {
+            isUrgentPictureImageView.image = UIImage(named: imageName)
         }
     }
 }

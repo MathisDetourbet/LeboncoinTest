@@ -13,7 +13,7 @@ struct AdvertisementModel {
     let title: String
     let description: String
     let price: UInt
-    let imagesUrl: ImageModel
+    let imageModel: ImageModel
     let creationDate: String
     let isUrgent: Bool
 }
@@ -26,7 +26,7 @@ extension AdvertisementModel: Decodable {
         case title
         case description
         case price
-        case imagesUrl = "images_url"
+        case imageModel = "images_url"
         case creationDate = "creation_date"
         case isUrgent = "is_urgent"
     }
