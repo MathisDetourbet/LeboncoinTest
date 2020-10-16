@@ -9,6 +9,8 @@ import UIKit
 
 final class ImageCache {
     
+    private let lock = NSLock()
+    
     private lazy var cache: NSCache<NSString, UIImage> = {
         let cache = NSCache<NSString, UIImage>()
         cache.countLimit = Configuration.imagesCountLimit
@@ -18,10 +20,12 @@ final class ImageCache {
     
     // MARK: - Store and retrieve image
     func storeImageInCache(_ image: UIImage, for url: URL) {
+        lock.lock(); defer { lock.unlock() }
         cache.setObject(image, forKey: url.absoluteString as NSString)
     }
     
     func retrieveImageFromCache(with url: URL) -> UIImage? {
+        lock.lock(); defer { lock.unlock() }
         return cache.object(forKey: url.absoluteString as NSString)
     }
 }
