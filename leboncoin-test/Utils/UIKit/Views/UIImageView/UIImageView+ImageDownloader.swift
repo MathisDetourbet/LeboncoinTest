@@ -19,7 +19,7 @@ extension UIImageView {
         }
         
         ImageDownloader.download(from: url) { [weak self] (downloadedImage, httpError) in
-            guard let self = self, httpError != nil else {
+            guard let self = self, httpError == nil else {
                 return
             }
 
