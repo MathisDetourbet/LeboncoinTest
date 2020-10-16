@@ -9,16 +9,17 @@ import UIKit
 
 // MARK: -  AdvertisementDetailsView Definition
 final class AdvertisementDetailsView: UIView {
-    
     private var vStackView: UIStackView!
     
     // MARK: Inits
     init() {
         super.init(frame: .zero)
+        setupView()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupView()
     }
     
     required init?(coder: NSCoder) {
@@ -30,7 +31,8 @@ final class AdvertisementDetailsView: UIView {
         let vStackView = UIStackView()
         vStackView.backgroundColor = .clear
         vStackView.axis = .vertical
-        vStackView.spacing = 10.0
+        vStackView.spacing = 5.0
+        vStackView.alignment = .fill
         vStackView.distribution = .fillProportionally
         vStackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(vStackView)
@@ -41,6 +43,7 @@ final class AdvertisementDetailsView: UIView {
             vStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             vStackView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+        self.vStackView = vStackView
     }
 }
 
@@ -65,6 +68,7 @@ extension AdvertisementDetailsView {
         label.text = text
         label.textColor = .systemGray
         label.numberOfLines = 0
+        
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }

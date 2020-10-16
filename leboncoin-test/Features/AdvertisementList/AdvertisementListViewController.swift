@@ -7,12 +7,18 @@
 
 import UIKit
 
+protocol AdvertisementListRoutingDelegate: class {
+    func userDidSelectAdvertisement(advertisementViewModel: AdvertisementViewModel)
+}
+
 final class AdvertisementListViewController: UIViewController {
     private var collectionView: UICollectionView!
     private let viewModel: AdvertisementListViewModel
+    private weak var routingDelegate: AdvertisementListRoutingDelegate?
     
-    init(viewModel: AdvertisementListViewModel) {
+    init(viewModel: AdvertisementListViewModel, routingDelegate: AdvertisementListRoutingDelegate?) {
         self.viewModel = viewModel
+        self.routingDelegate = routingDelegate
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -80,7 +86,7 @@ private extension AdvertisementListViewController {
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: CollectionViewLayoutProperties.collectionViewMargins),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CollectionViewLayoutProperties.collectionViewMargins),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -CollectionViewLayoutProperties.collectionViewMargins),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -CollectionViewLayoutProperties.collectionViewMargins)
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -CollectionViewLayoutProperties.collectionViewMargins)
         ])
         
         collectionView.register(
@@ -142,6 +148,7 @@ extension AdvertisementListViewController: UICollectionViewDataSource {
 extension AdvertisementListViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let viewModelSelected = viewModel.elementAt(indexPath)
+        routingDelegate?.userDidSelectAdvertisement(advertisementViewModel: viewModelSelected)
     }
 }
