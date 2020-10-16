@@ -19,7 +19,23 @@ enum CategoryEntity: CustomStringConvertible, CaseIterable {
     case service
     case animals
     case children
-    case unknown
+    
+    init?(categoryId: UInt) {
+        switch categoryId {
+        case 1:     self = .vehicle
+        case 2:     self = .fashion
+        case 3:     self = .diy
+        case 4:     self = .home
+        case 5:     self = .hobbies
+        case 6:     self = .realEstate
+        case 7:     self = .booksCDDVC
+        case 8:     self = .multimedia
+        case 9:     self = .service
+        case 10:    self = .animals
+        case 11:    self = .children
+        default:    return nil
+        }
+    }
     
     var description: String {
         // Should return a localizable string
@@ -35,7 +51,6 @@ enum CategoryEntity: CustomStringConvertible, CaseIterable {
         case .service:      return "Service"
         case .animals:      return "Animaux"
         case .children:     return "Enfants"
-        case .unknown:      return ""
         }
     }
     
@@ -52,31 +67,21 @@ enum CategoryEntity: CustomStringConvertible, CaseIterable {
         case .service:      return "Service"
         case .animals:      return "Animaux"
         case .children:     return "Enfants"
-        case .unknown:       return ""
         }
     }
     
-    static func makeCategoryFromId(_ categoryId: UInt) -> CategoryEntity {
-        switch categoryId {
-        case 1:     return .vehicle
-        case 2:     return .fashion
-        case 3:     return .diy
-        case 4:     return .home
-        case 5:     return .hobbies
-        case 6:     return .realEstate
-        case 7:     return .booksCDDVC
-        case 8:     return .multimedia
-        case 9:     return .service
-        case 10:    return .animals
-        case 11:    return .children
-        default:    return .unknown
-        }
+    var id: UInt {
+        // Categories are starting at 1
+        return UInt((CategoryEntity.allCases.firstIndex(of: self) ?? 0 + 1))
     }
 }
 
-extension CategoryEntity: ModelInitializable {
+extension CategoryEntity {
     
-    init(from categoryId: UInt) {
-        self = CategoryEntity.makeCategoryFromId(categoryId)
+    init?(from categoryId: UInt) {
+        guard let category = CategoryEntity(categoryId: categoryId) else {
+            return nil
+        }
+        self = category
     }
 }

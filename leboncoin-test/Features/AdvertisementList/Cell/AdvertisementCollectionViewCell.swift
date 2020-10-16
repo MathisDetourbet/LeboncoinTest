@@ -7,16 +7,6 @@
 
 import UIKit
 
-// MARK: - UI Model to configure AdvertisementCollectionViewCell
-protocol AdvertisementCellUIModel {
-    var title: String                       { get }
-    var price: String                       { get }
-    var adPictureUrl: URL?                  { get }
-    var adDefaultPictureImageName: String   { get }
-    var categoryPictureImageName: String    { get }
-    var isUrgentPictureImageName: String?   { get }
-}
-
 // MARK: -  AdvertisementCollectionViewCell definition
 final class AdvertisementCollectionViewCell: UICollectionViewCell {
     
@@ -193,8 +183,10 @@ private extension AdvertisementCollectionViewCell {
         priceLabel.text = price
     }
     
-    func fillCategoryPictureImageView(with imageName: String) {
-        categoryPictureImageView.image = UIImage(named: imageName)
+    func fillCategoryPictureImageView(with imageName: String?) {
+        if let imageName = imageName {
+            categoryPictureImageView.image = UIImage(named: imageName)
+        }
     }
     
     func fillIsUrgentPicture(with isUrgentImageName: String?) {

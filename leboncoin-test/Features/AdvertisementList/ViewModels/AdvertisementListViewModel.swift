@@ -45,7 +45,18 @@ private extension AdvertisementListViewModel {
     }
     
     static func sortedByDate(ads: [AdvertisementViewModel]) -> [AdvertisementViewModel] {
-        return ads.sorted { $0.creationDate < $1.creationDate }
+        return ads.sorted {
+            // Here we put `nil` dates at the back the stack
+            guard let date = $0.creationDate else {
+                return false
+            }
+            
+            guard let nextDate = $1.creationDate else {
+                return true
+            }
+            
+            return date < nextDate
+        }
     }
     
     static func sortedByIsUrgent(ads: [AdvertisementViewModel]) -> [AdvertisementViewModel] {

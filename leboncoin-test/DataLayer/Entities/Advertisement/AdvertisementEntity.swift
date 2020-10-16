@@ -8,9 +8,10 @@
 import Foundation
 
 struct AdvertisementEntity {
+    let id: UInt
     let title: String
     let price: UInt
-    let category: CategoryEntity
+    let category: CategoryEntity?
     let description: String
     let imageEntity: ImageEntity
     let creationDateString: String
@@ -27,6 +28,7 @@ struct AdvertisementEntity {
 
 extension AdvertisementEntity: ModelInitializable {
     init(from model: AdvertisementModel) {
+        self.id = model.id
         self.title = model.title
         self.price = model.price
         self.category = CategoryEntity(from: model.categoryId)
