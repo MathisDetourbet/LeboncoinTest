@@ -12,6 +12,7 @@ final class ImageDownloader {
     static var shared = ImageDownloader()
     
     private static var cache = ImageCache()
+    private static let successCodeRange = 200..<300
     
     static func download(from url: URL, completion: @escaping (UIImage?, HTTPError?) -> Void) {
         if let cachedImage = cache.retrieveImageFromCache(with: url) {
@@ -20,8 +21,16 @@ final class ImageDownloader {
         }
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            // HTTP request will always respond with a response of type HTTPURLResponse
+            let httpResponse = response as! HTTPURLResponse
+            
+            // Check if request failed
             if let error = error {
-                completion(nil, HTTPError.makeFromNSError(error as NSError))
+                if !ImageDownloader.successCodeRange.contains(httpResponse.statusCode) {
+                    completion(nil, HTTPError.makeFromHTTPURLResponse(httpResponse))
+                } else {
+                    completion(nil, HTTPError.makeFromNSError(error as NSError))
+                }
                 return
             }
             
