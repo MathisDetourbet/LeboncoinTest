@@ -18,7 +18,7 @@ final class ImageCache {
         return cache
     }()
     
-    // MARK: - Store and retrieve image
+    // MARK: Store and retrieve image
     func storeImageInCache(_ image: UIImage, for url: URL) {
         lock.lock(); defer { lock.unlock() }
         cache.setObject(image, forKey: url.absoluteString as NSString)
