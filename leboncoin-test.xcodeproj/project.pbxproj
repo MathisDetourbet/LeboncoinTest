@@ -10,6 +10,7 @@
 		517D3349253988DB004F1F27 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517D3348253988DB004F1F27 /* ImageDownloader.swift */; };
 		517D334F253990BC004F1F27 /* UIImageView+ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517D334E253990BC004F1F27 /* UIImageView+ImageDownloader.swift */; };
 		517D33582539968E004F1F27 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517D33572539968E004F1F27 /* ImageCache.swift */; };
+		517D33612539B060004F1F27 /* UIView+RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517D33602539B060004F1F27 /* UIView+RoundedCorner.swift */; };
 		5185B0F32538459500FB5861 /* AdvertisementListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5185B0F22538459500FB5861 /* AdvertisementListViewModel.swift */; };
 		51B57CC825374BBA00FEEAEA /* AdvsertisementsListDataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B57CC725374BBA00FEEAEA /* AdvsertisementsListDataAccess.swift */; };
 		51C447E9253492DC0058C7D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C447E8253492DC0058C7D8 /* AppDelegate.swift */; };
@@ -70,6 +71,7 @@
 		517D3348253988DB004F1F27 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		517D334E253990BC004F1F27 /* UIImageView+ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+ImageDownloader.swift"; sourceTree = "<group>"; };
 		517D33572539968E004F1F27 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		517D33602539B060004F1F27 /* UIView+RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+RoundedCorner.swift"; sourceTree = "<group>"; };
 		5185B0F22538459500FB5861 /* AdvertisementListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementListViewModel.swift; sourceTree = "<group>"; };
 		51B57CC725374BBA00FEEAEA /* AdvsertisementsListDataAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvsertisementsListDataAccess.swift; sourceTree = "<group>"; };
 		51C447E5253492DC0058C7D8 /* leboncoin-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "leboncoin-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +156,14 @@
 				517D33572539968E004F1F27 /* ImageCache.swift */,
 			);
 			path = Cache;
+			sourceTree = "<group>";
+		};
+		517D335F2539B04E004F1F27 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				517D33602539B060004F1F27 /* UIView+RoundedCorner.swift */,
+			);
+			path = UIView;
 			sourceTree = "<group>";
 		};
 		51C447DC253492DC0058C7D8 = {
@@ -469,6 +479,7 @@
 		51E236842538906700F48232 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				517D335F2539B04E004F1F27 /* UIView */,
 				517D334D253990A0004F1F27 /* UIImageView */,
 				51E2364525386E9E00F48232 /* CollectionView */,
 			);
@@ -725,6 +736,7 @@
 				51E70B70253858B300E89A0E /* AdvertisementCollectionViewCell.swift in Sources */,
 				51C448A12535C1100058C7D8 /* HTTPMethod.swift in Sources */,
 				51C448CE2535CCE40058C7D8 /* HTTPService.swift in Sources */,
+				517D33612539B060004F1F27 /* UIView+RoundedCorner.swift in Sources */,
 				51E70B67253856E500E89A0E /* NavCoordinator.swift in Sources */,
 				51C448892535BD0D0058C7D8 /* HTTPConfiguration.swift in Sources */,
 				517D33582539968E004F1F27 /* ImageCache.swift in Sources */,

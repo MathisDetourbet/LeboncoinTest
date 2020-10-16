@@ -9,12 +9,12 @@ import UIKit
 
 // MARK: - UI Model to configure AdvertisementCollectionViewCell
 protocol AdvertisementCellUIModel {
-    var title: String { get }
-    var price: String { get }
-    var adPictureUrl: URL? { get }
-    var adDefaultPictureImageName: String { get }
-    var categoryPictureImageName: String { get }
-    var isUrgentPictureImageName: String? { get }
+    var title: String                       { get }
+    var price: String                       { get }
+    var adPictureUrl: URL?                  { get }
+    var adDefaultPictureImageName: String   { get }
+    var categoryPictureImageName: String    { get }
+    var isUrgentPictureImageName: String?   { get }
 }
 
 // MARK: -  AdvertisementCollectionViewCell definition
@@ -59,9 +59,7 @@ final class AdvertisementCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupContentView() {
-        contentView.backgroundColor = .lightGray
-        contentView.layer.cornerRadius = 5.0
-        contentView.clipsToBounds = true
+        roundedCorner()
     }
     
     // MARK: Top container setup
@@ -74,7 +72,8 @@ final class AdvertisementCollectionViewCell: UICollectionViewCell {
             [
                 topContainerView.topAnchor.constraint(equalTo: contentView.topAnchor),
                 topContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-                topContainerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+                topContainerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+                topContainerView.heightAnchor.constraint(equalToConstant: (2/3 * contentView.frame.height))
             ]
         )
         
@@ -85,6 +84,7 @@ final class AdvertisementCollectionViewCell: UICollectionViewCell {
     private func setupAdPictureImageView() {
         adPictureImageView = UIImageView(frame: topContainerView.frame)
         adPictureImageView.contentMode = .scaleAspectFill
+        adPictureImageView.roundedCorner()
         adPictureImageView.translatesAutoresizingMaskIntoConstraints = false
         topContainerView.addSubview(adPictureImageView)
         NSLayoutConstraint.activate(
@@ -133,6 +133,7 @@ final class AdvertisementCollectionViewCell: UICollectionViewCell {
     private func setupBottomElements() {
         let bottomStackView = UIStackView()
         bottomStackView.axis = .vertical
+        bottomStackView.distribution = .fillProportionally
         bottomStackView.translatesAutoresizingMaskIntoConstraints = false
         bottomContainerView.addSubview(bottomStackView)
         NSLayoutConstraint.activate(
@@ -144,25 +145,25 @@ final class AdvertisementCollectionViewCell: UICollectionViewCell {
             ]
         )
         
-        let firstLineStackView = UIStackView()
-        firstLineStackView.axis = .horizontal
-        firstLineStackView.translatesAutoresizingMaskIntoConstraints = false
-        bottomStackView.addArrangedSubview(firstLineStackView)
-        
         titleLabel = UILabel()
-        titleLabel.numberOfLines = 1
+        titleLabel.numberOfLines = 2
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        firstLineStackView.addArrangedSubview(titleLabel)
+        bottomStackView.addArrangedSubview(titleLabel)
         
-        categoryPictureImageView = UIImageView()
-        categoryPictureImageView.contentMode = .scaleAspectFit
-        categoryPictureImageView.translatesAutoresizingMaskIntoConstraints = false
-        firstLineStackView.addArrangedSubview(categoryPictureImageView)
+        let secondLineStackView = UIStackView()
+        secondLineStackView.axis = .horizontal
+        secondLineStackView.translatesAutoresizingMaskIntoConstraints = false
+        bottomStackView.addArrangedSubview(secondLineStackView)
         
         priceLabel = UILabel()
         priceLabel.numberOfLines = 1
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
-        bottomStackView.addArrangedSubview(priceLabel)
+        secondLineStackView.addArrangedSubview(priceLabel)
+        
+        categoryPictureImageView = UIImageView()
+        categoryPictureImageView.contentMode = .scaleAspectFit
+        categoryPictureImageView.translatesAutoresizingMaskIntoConstraints = false
+        secondLineStackView.addArrangedSubview(categoryPictureImageView)
     }
 }
 
