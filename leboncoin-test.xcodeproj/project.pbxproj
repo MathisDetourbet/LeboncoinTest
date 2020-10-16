@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		517D3349253988DB004F1F27 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517D3348253988DB004F1F27 /* ImageDownloader.swift */; };
+		517D334F253990BC004F1F27 /* UIImageView+ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517D334E253990BC004F1F27 /* UIImageView+ImageDownloader.swift */; };
+		517D33582539968E004F1F27 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517D33572539968E004F1F27 /* ImageCache.swift */; };
 		5185B0F32538459500FB5861 /* AdvertisementListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5185B0F22538459500FB5861 /* AdvertisementListViewModel.swift */; };
 		51B57CC825374BBA00FEEAEA /* AdvsertisementsListDataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B57CC725374BBA00FEEAEA /* AdvsertisementsListDataAccess.swift */; };
 		51C447E9253492DC0058C7D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C447E8253492DC0058C7D8 /* AppDelegate.swift */; };
@@ -64,6 +67,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		517D3348253988DB004F1F27 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		517D334E253990BC004F1F27 /* UIImageView+ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+ImageDownloader.swift"; sourceTree = "<group>"; };
+		517D33572539968E004F1F27 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		5185B0F22538459500FB5861 /* AdvertisementListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementListViewModel.swift; sourceTree = "<group>"; };
 		51B57CC725374BBA00FEEAEA /* AdvsertisementsListDataAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvsertisementsListDataAccess.swift; sourceTree = "<group>"; };
 		51C447E5253492DC0058C7D8 /* leboncoin-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "leboncoin-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,6 +140,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		517D334D253990A0004F1F27 /* UIImageView */ = {
+			isa = PBXGroup;
+			children = (
+				517D334E253990BC004F1F27 /* UIImageView+ImageDownloader.swift */,
+			);
+			path = UIImageView;
+			sourceTree = "<group>";
+		};
+		517D335625399680004F1F27 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				517D33572539968E004F1F27 /* ImageCache.swift */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
 		51C447DC253492DC0058C7D8 = {
 			isa = PBXGroup;
 			children = (
@@ -299,6 +321,7 @@
 		51C4484A2535B3A30058C7D8 /* ImageDownloader */ = {
 			isa = PBXGroup;
 			children = (
+				517D3348253988DB004F1F27 /* ImageDownloader.swift */,
 			);
 			path = ImageDownloader;
 			sourceTree = "<group>";
@@ -446,6 +469,7 @@
 		51E236842538906700F48232 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				517D334D253990A0004F1F27 /* UIImageView */,
 				51E2364525386E9E00F48232 /* CollectionView */,
 			);
 			path = Views;
@@ -454,6 +478,7 @@
 		51E236852538907C00F48232 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				517D335625399680004F1F27 /* Cache */,
 				51E236832538905C00F48232 /* DataFormatter */,
 			);
 			path = Foundation;
@@ -682,6 +707,7 @@
 				51E236612538779F00F48232 /* ModelInitializable.swift in Sources */,
 				51C447E9253492DC0058C7D8 /* AppDelegate.swift in Sources */,
 				51C448962535C0100058C7D8 /* NetworkLayer.swift in Sources */,
+				517D3349253988DB004F1F27 /* ImageDownloader.swift in Sources */,
 				51E2364725386EB200F48232 /* CollectionViewCell+Reusable.swift in Sources */,
 				51E2365C2538775C00F48232 /* AdvertisementEntity.swift in Sources */,
 				51E236542538752900F48232 /* AdvertisementViewModel.swift in Sources */,
@@ -695,11 +721,13 @@
 				51E236962538983C00F48232 /* DateFormattor.swift in Sources */,
 				51D761C72536E4DE00091C6F /* URLRequest+HTTPRequest.swift in Sources */,
 				51C448A92535C12A0058C7D8 /* HTTPHeaders.swift in Sources */,
+				517D334F253990BC004F1F27 /* UIImageView+ImageDownloader.swift in Sources */,
 				51E70B70253858B300E89A0E /* AdvertisementCollectionViewCell.swift in Sources */,
 				51C448A12535C1100058C7D8 /* HTTPMethod.swift in Sources */,
 				51C448CE2535CCE40058C7D8 /* HTTPService.swift in Sources */,
 				51E70B67253856E500E89A0E /* NavCoordinator.swift in Sources */,
 				51C448892535BD0D0058C7D8 /* HTTPConfiguration.swift in Sources */,
+				517D33582539968E004F1F27 /* ImageCache.swift in Sources */,
 				51B57CC825374BBA00FEEAEA /* AdvsertisementsListDataAccess.swift in Sources */,
 				51E23687253890F700F48232 /* DataFormatter.swift in Sources */,
 				51E2364F253874D600F48232 /* CollectionView+ViewModel.swift in Sources */,

@@ -38,7 +38,7 @@ final class AdvertisementListViewController: UIViewController {
         viewModel.fetchAdvertisementsList { [weak self] error in
             DispatchQueue.main.async {
                 if let error = error {
-                    self?.displayErrorAlert(with: error)
+                    self?.presentErrorAlert(with: error)
                 } else {
                     self?.collectionView.reloadData()
                 }
@@ -46,7 +46,7 @@ final class AdvertisementListViewController: UIViewController {
         }
     }
     
-    private func displayErrorAlert(with error: BusinessError) {
+    private func presentErrorAlert(with error: BusinessError) {
         let dismissAction = UIAlertAction(title: "Got it!", style: .default) { [weak self] _ in
             self?.dismiss(animated: true, completion: nil)
         }
@@ -77,7 +77,7 @@ private extension AdvertisementListViewController {
         view.addSubview(collectionView)
         
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: CollectionViewLayoutProperties.collectionViewMargins),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: CollectionViewLayoutProperties.collectionViewMargins),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CollectionViewLayoutProperties.collectionViewMargins),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -CollectionViewLayoutProperties.collectionViewMargins),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -CollectionViewLayoutProperties.collectionViewMargins)

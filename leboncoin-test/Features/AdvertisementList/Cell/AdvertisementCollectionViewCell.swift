@@ -184,11 +184,8 @@ private extension AdvertisementCollectionViewCell {
     }
     
     func fillAdPictureImageView(with url: URL?, or defaultImageName: String) {
-        if let _ = url {
-            // TODO: Use image downloader
-        } else {
-            adPictureImageView.image = UIImage(named: defaultImageName)
-        }
+        let placeholderImage = UIImage(named: defaultImageName)
+        adPictureImageView.downloadImageFromURL(url, with: placeholderImage)
     }
     
     func fillPriceLabel(with price: String) {
