@@ -12,18 +12,18 @@ final class AdvertisementListViewModel: TableOrCollectionViewModel {
     let businessService: IAdvertisementListBusinessService
     
     /// Array of ads fetched from the API, dont use it to display it, use list property instead
-    var rawList: [AdvertisementViewModel] { didSet { viewableList = rawList } }
+    var rawList: [AdvertisementViewModel] { didSet { processViewableList() } }
     
     // MARK: Outputs
-    /// Array of ads builed from rawList property used to be display as wanted. Can be sorted. filtered, etc.
+    
+    /// Array of ads built from rawList property used to be display as wanted. Can be sorted. filtered, etc.
     var viewableList: [AdvertisementViewModel] { didSet { newDataAvailable?() } }
     
     /// Closure called when new data is available and ready to be displayed
     var newDataAvailable: (() -> Void)?
     
-    private var categorySelected: CategoryEntity? {
-        didSet { sortAdvertisementsList() }
-    }
+    /// Category selected by the user, nil by default. When set, view model will process (sort, filter) the viewable ads list.
+    private var categorySelected: CategoryEntity? { didSet { processViewableList() } }
     
     init(businessService: IAdvertisementListBusinessService) {
         self.businessService = businessService
@@ -37,7 +37,7 @@ final class AdvertisementListViewModel: TableOrCollectionViewModel {
             
             case .success(let advertisementsEntity):
                 let adsViewModels = advertisementsEntity.map(AdvertisementViewModel.init)
-                self?.rawList = AdvertisementListViewModel.sortedAdvertisementsList(adsViewModels, by: self?.categorySelected)
+                self?.rawList = adsViewModels
                 completion(nil)
                 
             case .failure(let businessError):
@@ -46,11 +46,8 @@ final class AdvertisementListViewModel: TableOrCollectionViewModel {
         }
     }
     
-    private func sortAdvertisementsList() {
-        // Always take the raw list to ensure to have all data
-        let currentAds = rawList
-        let preparedAds = AdvertisementListViewModel.sortedAdvertisementsList(currentAds, by: categorySelected)
-        viewableList = preparedAds
+    private func processViewableList() {
+        viewableList = AdvertisementListViewModel.sortedAdvertisementsList(rawList, by: categorySelected)
     }
 }
 
@@ -101,6 +98,7 @@ private extension AdvertisementListViewModel {
     }
 }
 
+// MARK: - CategoryPicker Delegate
 extension AdvertisementListViewModel: CategoryPickerDelegate {
     
     func didSelectCategory(_ category: CategoryEntity) {
