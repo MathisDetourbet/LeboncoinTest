@@ -17,7 +17,7 @@ final class CategoryPickerViewController: UIViewController {
     private let viewModel: CategoryPickerViewModel
     private weak var delegate: CategoryFilterDelegate?
     
-    init() {
+    private init() {
         self.viewModel = CategoryPickerViewModel()
         super.init(nibName: nil, bundle: nil)
     }
