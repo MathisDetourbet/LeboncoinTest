@@ -11,6 +11,7 @@ struct AdvertisementViewModel {
     let dataFormatter: DateFormattor & CurrencyFormattor = DataFormatter()
     let model: AdvertisementEntity
     
+    var category: CategoryEntity? { model.category }
     var isUrgent: Bool { model.isUrgent }
     
     var creationDate: Date? {

@@ -8,12 +8,27 @@
 import Foundation
 
 final class AdvertisementListViewModel: TableOrCollectionViewModel {
+    // MARK: Inputs
     let businessService: IAdvertisementListBusinessService
-    var model: [AdvertisementViewModel]
+    
+    /// Array of ads fetched from the API, dont use it to display it, use list property instead
+    var rawList: [AdvertisementViewModel] { didSet { viewableList = rawList } }
+    
+    // MARK: Outputs
+    /// Array of ads builed from rawList property used to be display as wanted. Can be sorted. filtered, etc.
+    var viewableList: [AdvertisementViewModel] { didSet { newDataAvailable?() } }
+    
+    /// Closure called when new data is available and ready to be displayed
+    var newDataAvailable: (() -> Void)?
+    
+    private var categorySelected: CategoryEntity? {
+        didSet { sortAdvertisementsList() }
+    }
     
     init(businessService: IAdvertisementListBusinessService) {
         self.businessService = businessService
-        self.model = []
+        self.rawList = []
+        self.viewableList = []
     }
     
     func fetchAdvertisementsList(completion: @escaping (BusinessError?) -> Void) {
@@ -22,7 +37,7 @@ final class AdvertisementListViewModel: TableOrCollectionViewModel {
             
             case .success(let advertisementsEntity):
                 let adsViewModels = advertisementsEntity.map(AdvertisementViewModel.init)
-                self?.model = AdvertisementListViewModel.sortedAdvertisementsList(ads: adsViewModels)
+                self?.rawList = AdvertisementListViewModel.sortedAdvertisementsList(adsViewModels, by: self?.categorySelected)
                 completion(nil)
                 
             case .failure(let businessError):
@@ -30,18 +45,28 @@ final class AdvertisementListViewModel: TableOrCollectionViewModel {
             }
         }
     }
+    
+    private func sortAdvertisementsList() {
+        // Always take the raw list to ensure to have all data
+        let currentAds = rawList
+        let preparedAds = AdvertisementListViewModel.sortedAdvertisementsList(currentAds, by: categorySelected)
+        viewableList = preparedAds
+    }
 }
 
-// MARK: - Business rule: sort ads by date and isUrgent equals true
+// MARK: - Business rule: sort ads by date and isUrgent equals true & filter by category
 private extension AdvertisementListViewModel {
-    static func sortedAdvertisementsList(ads: [AdvertisementViewModel]) -> [AdvertisementViewModel] {
+    static func sortedAdvertisementsList(_ ads: [AdvertisementViewModel], by category: CategoryEntity?) -> [AdvertisementViewModel] {
         // Sort by date first
-        let sortedByDate = AdvertisementListViewModel.sortedByDate(ads: ads)
+        let sortedAdsByDate = AdvertisementListViewModel.sortedByDate(ads: ads)
         
         // Then, sort by isUrgent equals true
-        let sortedByIsUrgent = AdvertisementListViewModel.sortedByIsUrgent(ads: sortedByDate)
+        let sortedAdsByIsUrgent = AdvertisementListViewModel.sortedByIsUrgent(ads: sortedAdsByDate)
         
-        return sortedByIsUrgent
+        // Finally, filter ads by category if needed
+        let filteredAdsByCategory = AdvertisementListViewModel.filterByCategory(category, ads: sortedAdsByIsUrgent)
+        
+        return filteredAdsByCategory
     }
     
     static func sortedByDate(ads: [AdvertisementViewModel]) -> [AdvertisementViewModel] {
@@ -66,5 +91,19 @@ private extension AdvertisementListViewModel {
             default: return true
             }
         }
+    }
+    
+    static func filterByCategory(_ category: CategoryEntity?, ads: [AdvertisementViewModel]) -> [AdvertisementViewModel] {
+        guard let category = category else {
+            return ads
+        }
+        return ads.filter { $0.category == category }
+    }
+}
+
+extension AdvertisementListViewModel: CategoryPickerDelegate {
+    
+    func didSelectCategory(_ category: CategoryEntity) {
+        categorySelected = category
     }
 }

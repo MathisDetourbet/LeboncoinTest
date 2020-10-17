@@ -8,27 +8,27 @@
 import Foundation
 
 protocol TableOrCollectionViewModel {
-    associatedtype Model: Sequence
-    var model: Model { get }
+    associatedtype List: Sequence
+    var viewableList: List { get }
     
     var numberOfSections: Int { get }
     
     func numberOfItemsIn(_ section: Int) -> Int
-    func elementAt(_ indexPath: IndexPath) -> Model.Element
+    func elementAt(_ indexPath: IndexPath) -> List.Element
 }
 
-extension TableOrCollectionViewModel where Model: Collection {
+extension TableOrCollectionViewModel where List: Collection {
     var numberOfSections: Int { return 1 }
     
     func numberOfItemsIn(_ section: Int) -> Int {
-        return model.count
+        return viewableList.count
     }
     
-    func elementAt(_ indexPath: IndexPath) -> Model.Element {
-        guard case 0...model.count = indexPath.row else {
+    func elementAt(_ indexPath: IndexPath) -> List.Element {
+        guard case 0...viewableList.count = indexPath.row else {
             fatalError("model object cannot be found at row: \(indexPath.row)!")
         }
-        let index = model.index(model.startIndex, offsetBy: indexPath.row)
-        return model[index]
+        let index = viewableList.index(viewableList.startIndex, offsetBy: indexPath.row)
+        return viewableList[index]
     }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol CategoryFilterDelegate: class {
+protocol CategoryPickerDelegate: class {
     func didSelectCategory(_ category: CategoryEntity)
 }
 
@@ -15,25 +15,25 @@ final class CategoryPickerViewController: UIViewController {
     
     private var tableView: UITableView!
     private let viewModel: CategoryPickerViewModel
-    private weak var delegate: CategoryFilterDelegate?
+    private weak var delegate: CategoryPickerDelegate?
+    
+    static func prompt(
+        on viewController: UIViewController,
+        delegate: CategoryPickerDelegate
+    ) {
+        let vc = CategoryPickerViewController()
+        vc.delegate = delegate
+        viewController.present(vc, animated: true, completion: nil)
+    }
     
     private init() {
         self.viewModel = CategoryPickerViewModel()
+        
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    static func prompt(
-        viewModel: CategoryPickerViewModel,
-        on viewController: UIViewController,
-        delegate: CategoryFilterDelegate
-    ) {
-        let vc = CategoryPickerViewController()
-        vc.delegate = delegate
-        viewController.present(vc, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -62,8 +62,18 @@ final class CategoryPickerViewController: UIViewController {
 
 extension CategoryPickerViewController: UITableViewDataSource {
     
+    private static let tableViewHeaderTitle = "Select a category:"
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.numberOfSections
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfItemsIn(section)
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return CategoryPickerViewController.tableViewHeaderTitle
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

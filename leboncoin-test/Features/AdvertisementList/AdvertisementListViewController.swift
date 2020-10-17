@@ -31,25 +31,26 @@ final class AdvertisementListViewController: UIViewController {
         super.viewDidLoad()
         
         setupView()
+        bindCollectionViewToViewModel()
         fillCollectionView()
     }
     
+    // MARK: Setup views, alerts, navbar item
     private func setupView() {
         view.backgroundColor = .white
         
+        setupFilterNavigationBarItem()
         collectionView = makeCollectionView()
     }
     
-    private func fillCollectionView() {
-        viewModel.fetchAdvertisementsList { [weak self] error in
-            DispatchQueue.main.async {
-                if let error = error {
-                    self?.presentErrorAlert(with: error)
-                } else {
-                    self?.collectionView.reloadData()
-                }
-            }
-        }
+    private func setupFilterNavigationBarItem() {
+        let filterItem = UIBarButtonItem(
+            image: UIImage(named: "filter_picto"),
+            style: .plain,
+            target: self,
+            action: #selector(userDidSelectFilterButton)
+        )
+        navigationItem.rightBarButtonItem = filterItem
     }
     
     private func presentErrorAlert(with error: BusinessError) {
@@ -57,7 +58,35 @@ final class AdvertisementListViewController: UIViewController {
             self?.dismiss(animated: true, completion: nil)
         }
         let alert = UIAlertController.makeBusinessErrorAlert(error, dismissAction: dismissAction)
-        present(alert, animated: true, completion: nil)
+        
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    @objc
+    func userDidSelectFilterButton() {
+        CategoryPickerViewController.prompt(on: self, delegate: viewModel)
+    }
+}
+
+// MARK: - Retrieve data from viewModel
+private extension AdvertisementListViewController {
+    
+    func bindCollectionViewToViewModel() {
+        viewModel.newDataAvailable = { [weak self] in
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+            }
+        }
+    }
+    
+    func fillCollectionView() {
+        viewModel.fetchAdvertisementsList { [weak self] error in
+            if let error = error {
+                self?.presentErrorAlert(with: error)
+            }
+        }
     }
 }
 

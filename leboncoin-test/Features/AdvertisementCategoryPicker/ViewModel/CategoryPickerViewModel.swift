@@ -8,9 +8,9 @@
 import Foundation
 
 struct CategoryPickerViewModel: TableOrCollectionViewModel {
-    var model: CategoryEntity.AllCases
+    var viewableList: CategoryEntity.AllCases
     
     init() {
-        self.model = CategoryEntity.allCases
+        self.viewableList = CategoryEntity.allCases
     }
 }
