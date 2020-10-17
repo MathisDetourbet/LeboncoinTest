@@ -38,7 +38,8 @@ final class AdvertisementCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        // TODO: Manage images
+        adPictureImageView.image = nil
+        isUrgentPictureImageView.image = nil
     }
     
     // MARK: View setup
@@ -89,15 +90,15 @@ final class AdvertisementCollectionViewCell: UICollectionViewCell {
     
     private func setupIsUrgentPictureImageView() {
         isUrgentPictureImageView = UIImageView()
-        isUrgentPictureImageView.contentMode = .scaleAspectFit
+        isUrgentPictureImageView.contentMode = .scaleAspectFill
         isUrgentPictureImageView.translatesAutoresizingMaskIntoConstraints = false
         topContainerView.addSubview(isUrgentPictureImageView)
         NSLayoutConstraint.activate(
             [
                 isUrgentPictureImageView.leadingAnchor.constraint(equalTo: topContainerView.leadingAnchor),
                 isUrgentPictureImageView.bottomAnchor.constraint(equalTo: topContainerView.bottomAnchor),
-                isUrgentPictureImageView.heightAnchor.constraint(equalTo: isUrgentPictureImageView.widthAnchor, multiplier: 2.0),
-                isUrgentPictureImageView.widthAnchor.constraint(equalToConstant: topContainerView.frame.width / 2)
+                isUrgentPictureImageView.heightAnchor.constraint(equalTo: isUrgentPictureImageView.widthAnchor, multiplier: 0.5),
+                isUrgentPictureImageView.widthAnchor.constraint(equalToConstant: 70)
             ]
         )
     }
