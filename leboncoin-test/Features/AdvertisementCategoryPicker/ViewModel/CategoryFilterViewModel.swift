@@ -9,4 +9,8 @@ import Foundation
 
 struct CategoryPickerViewModel: TableOrCollectionViewModel {
     var model: CategoryEntity.AllCases
+    
+    init() {
+        self.model = CategoryEntity.allCases
+    }
 }
