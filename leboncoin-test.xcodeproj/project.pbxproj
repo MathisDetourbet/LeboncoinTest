@@ -204,6 +204,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		51806ECB253B1A7800BD4721 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				51E70B6E2538589E00E89A0E /* Cell */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		51C447DC253492DC0058C7D8 = {
 			isa = PBXGroup;
 			children = (
@@ -273,7 +281,7 @@
 				51E70B7825386B9700E89A0E /* DataAccess */,
 				51E236A925389D7300F48232 /* BusinessService */,
 				51E70B7725386B8700E89A0E /* ViewModels */,
-				51E70B6E2538589E00E89A0E /* Cell */,
+				51806ECB253B1A7800BD4721 /* Views */,
 			);
 			path = AdvertisementList;
 			sourceTree = "<group>";

@@ -22,8 +22,16 @@ final class AdvertisementListViewModel: TableOrCollectionViewModel {
     /// Closure called when new data is available and ready to be displayed
     var newDataAvailable: (() -> Void)?
     
+    /// Closure which indicate if the remove filter button should be displayed or not.
+    var shouldDisplayRemoveFilterButton: ((Bool) -> Void)?
+    
     /// Category selected by the user, nil by default. When set, view model will process (sort, filter) the viewable ads list.
-    private var categorySelected: CategoryEntity? { didSet { processViewableList() } }
+    private var categorySelected: CategoryEntity? {
+        didSet {
+            shouldDisplayRemoveFilterButton?(categorySelected != nil ? true : false)
+            processViewableList()
+        }
+    }
     
     init(businessService: IAdvertisementListBusinessService) {
         self.businessService = businessService
@@ -44,6 +52,10 @@ final class AdvertisementListViewModel: TableOrCollectionViewModel {
                 completion(businessError)
             }
         }
+    }
+    
+    func removeFilter() {
+        categorySelected = nil
     }
     
     private func processViewableList() {

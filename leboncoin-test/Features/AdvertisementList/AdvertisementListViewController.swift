@@ -13,6 +13,7 @@ protocol AdvertisementListRoutingDelegate: class {
 
 final class AdvertisementListViewController: UIViewController {
     private var collectionView: UICollectionView!
+    private var removeFilterButton: UIButton!
     private let viewModel: AdvertisementListViewModel
     private weak var routingDelegate: AdvertisementListRoutingDelegate?
     
@@ -39,8 +40,11 @@ final class AdvertisementListViewController: UIViewController {
     private func setupView() {
         view.backgroundColor = .white
         
-        setupFilterNavigationBarItem()
+        navigationItem.title = "Advertisements list"
+        
         collectionView = makeCollectionView()
+        setupRemoveFilterButton()
+        setupFilterNavigationBarItem()
     }
     
     private func setupFilterNavigationBarItem() {
@@ -51,6 +55,24 @@ final class AdvertisementListViewController: UIViewController {
             action: #selector(userDidSelectFilterButton)
         )
         navigationItem.rightBarButtonItem = filterItem
+    }
+    
+    private func setupRemoveFilterButton() {
+        let button = UIButton(type: .custom)
+        button.setTitle("Remove filter", for: .normal)
+        button.addTarget(self, action: #selector(userDidSelectRemoveFilterButton), for: .touchUpInside)
+        button.isHidden = true
+        button.roundedCorner()
+        button.backgroundColor = .red
+        button.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(button)
+        
+        NSLayoutConstraint.activate([
+            button.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor),
+            button.topAnchor.constraint(equalTo: collectionView.topAnchor, constant: 8.0)
+        ])
+        
+        self.removeFilterButton = button
     }
     
     private func presentErrorAlert(with error: BusinessError) {
@@ -65,8 +87,13 @@ final class AdvertisementListViewController: UIViewController {
     }
     
     @objc
-    func userDidSelectFilterButton() {
+    private func userDidSelectFilterButton() {
         CategoryPickerViewController.prompt(on: self, delegate: viewModel)
+    }
+    
+    @objc
+    private func userDidSelectRemoveFilterButton() {
+        viewModel.removeFilter()
     }
 }
 
@@ -78,6 +105,10 @@ private extension AdvertisementListViewController {
             DispatchQueue.main.async {
                 self?.collectionView.reloadData()
             }
+        }
+        
+        viewModel.shouldDisplayRemoveFilterButton = { [weak self] shouldDisplayButton in
+            self?.removeFilterButton.isHidden = !shouldDisplayButton
         }
     }
     
@@ -115,7 +146,7 @@ private extension AdvertisementListViewController {
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: CollectionViewLayoutProperties.collectionViewMargins),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CollectionViewLayoutProperties.collectionViewMargins),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -CollectionViewLayoutProperties.collectionViewMargins),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -CollectionViewLayoutProperties.collectionViewMargins)
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
         collectionView.register(
