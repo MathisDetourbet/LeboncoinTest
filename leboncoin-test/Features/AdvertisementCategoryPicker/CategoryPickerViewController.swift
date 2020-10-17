@@ -80,9 +80,9 @@ extension CategoryPickerViewController: UITableViewDataSource {
         let category = viewModel.elementAt(indexPath)
         
         // No need to reuse cell here, too few of categories
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = category.description
-        cell.imageView?.image = UIImage(named: category.imageName)
+        cell.detailTextLabel?.text = category.picto
         return cell
     }
 }

@@ -18,7 +18,7 @@ final class AdvertisementCollectionViewCell: UICollectionViewCell {
     private var titleLabel: UILabel!
     private var priceLabel: UILabel!
     private var adPictureImageView: UIImageView!
-    private var categoryPictureImageView: UIImageView!
+    private var categoryPictoLabel: UILabel!
     private var isUrgentPictureImageView: UIImageView!
     
     // MARK: Inits
@@ -151,10 +151,10 @@ final class AdvertisementCollectionViewCell: UICollectionViewCell {
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
         secondLineStackView.addArrangedSubview(priceLabel)
         
-        categoryPictureImageView = UIImageView()
-        categoryPictureImageView.contentMode = .scaleAspectFit
-        categoryPictureImageView.translatesAutoresizingMaskIntoConstraints = false
-        secondLineStackView.addArrangedSubview(categoryPictureImageView)
+        categoryPictoLabel = UILabel()
+        categoryPictoLabel.contentMode = .scaleAspectFit
+        categoryPictoLabel.translatesAutoresizingMaskIntoConstraints = false
+        secondLineStackView.addArrangedSubview(categoryPictoLabel)
     }
 }
 
@@ -163,7 +163,7 @@ extension AdvertisementCollectionViewCell {
     func fill(with uiModel: AdvertisementCellUIModel) {
         fillTitleLabel(with: uiModel.title)
         fillPriceLabel(with: uiModel.price)
-        fillCategoryPictureImageView(with: uiModel.categoryPictureImageName)
+        fillCategoryPicto(with: uiModel.picto)
         fillAdPictureImageView(with: uiModel.adPictureUrl, or: uiModel.adDefaultPictureImageName)
         fillIsUrgentPicture(with: uiModel.isUrgentPictureImageName)
     }
@@ -184,9 +184,9 @@ private extension AdvertisementCollectionViewCell {
         priceLabel.text = price
     }
     
-    func fillCategoryPictureImageView(with imageName: String?) {
-        if let imageName = imageName {
-            categoryPictureImageView.image = UIImage(named: imageName)
+    func fillCategoryPicto(with pictoName: String?) {
+        if let pictoName = pictoName {
+            categoryPictoLabel.text = pictoName
         }
     }
     

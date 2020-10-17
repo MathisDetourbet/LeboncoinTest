@@ -13,7 +13,7 @@ protocol AdvertisementCellUIModel {
     var price: String                       { get }
     var adPictureUrl: URL?                  { get }
     var adDefaultPictureImageName: String   { get }
-    var categoryPictureImageName: String?   { get }
+    var picto: String?                      { get }
     var isUrgentPictureImageName: String?   { get }
 }
 
@@ -22,7 +22,7 @@ extension AdvertisementViewModel: AdvertisementCellUIModel {
     var title: String                       { model.title }
     var adPictureUrl: URL?                  { model.imageEntity.smallImageUrl }
     var adDefaultPictureImageName: String   { model.imageEntity.defaultImageName }
-    var categoryPictureImageName: String?   { model.category?.imageName }
+    var picto: String?                      { model.category?.picto }
     var isUrgentPictureImageName: String?   { model.isUrgentImageName }
     
     var price: String {
