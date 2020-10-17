@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol CollectionViewModel {
+protocol TableOrCollectionViewModel {
     associatedtype Model: Sequence
     var model: Model { get }
     
@@ -17,7 +17,7 @@ protocol CollectionViewModel {
     func elementAt(_ indexPath: IndexPath) -> Model.Element
 }
 
-extension CollectionViewModel where Model: Collection {
+extension TableOrCollectionViewModel where Model: Collection {
     var numberOfSections: Int { return 1 }
     
     func numberOfItemsIn(_ section: Int) -> Int {

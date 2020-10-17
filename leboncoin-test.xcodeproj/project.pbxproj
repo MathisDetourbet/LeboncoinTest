@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5120178B253AEB5000D50D25 /* CategoryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5120178A253AEB5000D50D25 /* CategoryPickerViewController.swift */; };
+		51201790253AEB9B00D50D25 /* CategoryFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5120178F253AEB9B00D50D25 /* CategoryFilterViewModel.swift */; };
 		517D3349253988DB004F1F27 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517D3348253988DB004F1F27 /* ImageDownloader.swift */; };
 		517D334F253990BC004F1F27 /* UIImageView+ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517D334E253990BC004F1F27 /* UIImageView+ImageDownloader.swift */; };
 		517D33582539968E004F1F27 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517D33572539968E004F1F27 /* ImageCache.swift */; };
@@ -72,6 +74,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5120178A253AEB5000D50D25 /* CategoryPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerViewController.swift; sourceTree = "<group>"; };
+		5120178F253AEB9B00D50D25 /* CategoryFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilterViewModel.swift; sourceTree = "<group>"; };
 		517D3348253988DB004F1F27 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		517D334E253990BC004F1F27 /* UIImageView+ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+ImageDownloader.swift"; sourceTree = "<group>"; };
 		517D33572539968E004F1F27 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
@@ -150,6 +154,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		51201797253AF38700D50D25 /* AdvertisementCategoryPicker */ = {
+			isa = PBXGroup;
+			children = (
+				5120178A253AEB5000D50D25 /* CategoryPickerViewController.swift */,
+				51201798253AF3B200D50D25 /* ViewModel */,
+			);
+			path = AdvertisementCategoryPicker;
+			sourceTree = "<group>";
+		};
+		51201798253AF3B200D50D25 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5120178F253AEB9B00D50D25 /* CategoryFilterViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		517D334D253990A0004F1F27 /* UIImageView */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				51C448332535AEB40058C7D8 /* AdvertisementList */,
+				51201797253AF38700D50D25 /* AdvertisementCategoryPicker */,
 				51C448342535AED60058C7D8 /* AdvertisementDetails */,
 			);
 			path = Features;
@@ -756,6 +778,8 @@
 				51C448A92535C12A0058C7D8 /* HTTPHeaders.swift in Sources */,
 				517D334F253990BC004F1F27 /* UIImageView+ImageDownloader.swift in Sources */,
 				51E70B70253858B300E89A0E /* AdvertisementCollectionViewCell.swift in Sources */,
+				5120178B253AEB5000D50D25 /* CategoryPickerViewController.swift in Sources */,
+				51201790253AEB9B00D50D25 /* CategoryFilterViewModel.swift in Sources */,
 				51C448A12535C1100058C7D8 /* HTTPMethod.swift in Sources */,
 				51C448CE2535CCE40058C7D8 /* HTTPService.swift in Sources */,
 				517D33612539B060004F1F27 /* UIView+RoundedCorner.swift in Sources */,

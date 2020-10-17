@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class AdvertisementListViewModel: CollectionViewModel {
+final class AdvertisementListViewModel: TableOrCollectionViewModel {
     let businessService: IAdvertisementListBusinessService
     var model: [AdvertisementViewModel]
     
