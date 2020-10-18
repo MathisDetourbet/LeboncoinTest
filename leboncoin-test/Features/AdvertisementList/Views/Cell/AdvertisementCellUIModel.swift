@@ -30,9 +30,9 @@ extension AdvertisementViewModel: AdvertisementCellUIModel {
         do {
             currencyString = try dataFormatter.currency(from: model.price)
         } catch DataFormatter.CurrencyFormatterError.badCurrencyNumber {
-            currencyString = "Bad format"
+            currencyString = "Price not available: bad format"
         } catch {
-            currencyString = ""
+            currencyString = "Price not available: \(error.localizedDescription)"
         }
         
         return currencyString
