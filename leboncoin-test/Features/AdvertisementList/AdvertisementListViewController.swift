@@ -12,8 +12,13 @@ protocol AdvertisementListRoutingDelegate: class {
 }
 
 final class AdvertisementListViewController: UIViewController {
+    
+    // MARK: Outlets property
     private var collectionView: UICollectionView!
     private var removeFilterButton: UIButton!
+    private var activityIndicatorView: UIActivityIndicatorView!
+    
+    // MARK: Data property
     private let viewModel: AdvertisementListViewModel
     private weak var routingDelegate: AdvertisementListRoutingDelegate?
     
@@ -36,15 +41,15 @@ final class AdvertisementListViewController: UIViewController {
         fillCollectionView()
     }
     
-    // MARK: Setup views, alerts, navbar item
+    // MARK: Setup views, alerts, activity, navbar item
     private func setupView() {
         view.backgroundColor = .white
-        
         navigationItem.title = "Advertisements list"
         
         collectionView = makeCollectionView()
         setupRemoveFilterButton()
         setupFilterNavigationBarItem()
+        setupActivityIndicator()
     }
     
     private func setupFilterNavigationBarItem() {
@@ -75,6 +80,20 @@ final class AdvertisementListViewController: UIViewController {
         self.removeFilterButton = button
     }
     
+    private func setupActivityIndicator() {
+        let activityIndicator = UIActivityIndicatorView(style: .gray)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(activityIndicator)
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor)
+        ])
+        
+        self.activityIndicatorView = activityIndicator
+        self.activityIndicatorView.startAnimating()
+    }
+    
     private func presentErrorAlert(with error: BusinessError) {
         let dismissAction = UIAlertAction(title: "Got it!", style: .default) { [weak self] _ in
             self?.dismiss(animated: true, completion: nil)
@@ -86,6 +105,7 @@ final class AdvertisementListViewController: UIViewController {
         }
     }
     
+    // MARK: Buttons actions
     @objc
     private func userDidSelectFilterButton() {
         CategoryPickerViewController.prompt(on: self, delegate: viewModel)
@@ -93,6 +113,7 @@ final class AdvertisementListViewController: UIViewController {
     
     @objc
     private func userDidSelectRemoveFilterButton() {
+        activityIndicatorView.startAnimating()
         viewModel.removeFilter()
     }
 }
@@ -102,9 +123,7 @@ private extension AdvertisementListViewController {
     
     func bindCollectionViewToViewModel() {
         viewModel.newDataAvailable = { [weak self] in
-            DispatchQueue.main.async {
-                self?.collectionView.reloadData()
-            }
+            self?.reloadCollectionViewData()
         }
         
         viewModel.shouldDisplayRemoveFilterButton = { [weak self] shouldDisplayButton in
@@ -117,6 +136,15 @@ private extension AdvertisementListViewController {
             if let error = error {
                 self?.presentErrorAlert(with: error)
             }
+        }
+    }
+    
+    func reloadCollectionViewData() {
+        DispatchQueue.main.async {
+            self.activityIndicatorView.stopAnimating()
+            self.collectionView.performBatchUpdates({
+                self.collectionView.reloadSections(IndexSet(integer: 0))
+            }, completion: nil)
         }
     }
 }
@@ -180,7 +208,7 @@ private extension AdvertisementListViewController {
     }
 }
 
-// MARK: - CollectionView DataSource
+// MARK: - Collection View DataSource
 extension AdvertisementListViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -204,7 +232,7 @@ extension AdvertisementListViewController: UICollectionViewDataSource {
     }
 }
 
-// MARK: - CollectionView Delegate
+// MARK: - Collection View Delegate
 extension AdvertisementListViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

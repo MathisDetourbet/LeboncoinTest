@@ -8,11 +8,20 @@
 import Foundation
 
 final class AdvertisementListViewModel: TableOrCollectionViewModel {
+    
     // MARK: Inputs
     let businessService: IAdvertisementListBusinessService
     
     /// Array of ads fetched from the API, dont use it to display it, use list property instead
     var rawList: [AdvertisementViewModel] { didSet { processViewableList() } }
+    
+    /// Category selected by the user, nil by default. When set, view model will process (sort, filter) the viewable ads list.
+    private var categorySelected: CategoryEntity? {
+        didSet {
+            shouldDisplayRemoveFilterButton?(categorySelected != nil)
+            processViewableList()
+        }
+    }
     
     // MARK: Outputs
     
@@ -25,14 +34,6 @@ final class AdvertisementListViewModel: TableOrCollectionViewModel {
     /// Closure which indicate if the remove filter button should be displayed or not.
     var shouldDisplayRemoveFilterButton: ((Bool) -> Void)?
     
-    /// Category selected by the user, nil by default. When set, view model will process (sort, filter) the viewable ads list.
-    private var categorySelected: CategoryEntity? {
-        didSet {
-            shouldDisplayRemoveFilterButton?(categorySelected != nil)
-            processViewableList()
-        }
-    }
-    
     init(businessService: IAdvertisementListBusinessService) {
         self.businessService = businessService
         self.rawList = []
@@ -42,7 +43,6 @@ final class AdvertisementListViewModel: TableOrCollectionViewModel {
     func fetchAdvertisementsList(completion: @escaping (BusinessError?) -> Void) {
         businessService.fetchAdvertisementList { [weak self] (result: Result<[AdvertisementEntity], BusinessError>) in
             switch result {
-            
             case .success(let advertisementsEntity):
                 let adsViewModels = advertisementsEntity.map(AdvertisementViewModel.init)
                 self?.rawList = adsViewModels
@@ -65,6 +65,7 @@ final class AdvertisementListViewModel: TableOrCollectionViewModel {
 
 // MARK: - Business rule: sort ads by date and isUrgent equals true & filter by category
 private extension AdvertisementListViewModel {
+    
     static func sortedAdvertisementsList(_ ads: [AdvertisementViewModel], by category: CategoryEntity?) -> [AdvertisementViewModel] {
         // Sort by date first
         let sortedAdsByDate = AdvertisementListViewModel.sortedByDate(ads: ads)
