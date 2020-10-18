@@ -12,20 +12,23 @@ protocol IAdvertisementListBusinessService {
 }
 
 final class AdvertisementListBusinessService: IAdvertisementListBusinessService {
-    private let dataAccessor: HTTPAdvsertisementsListDataAccessor
+    private let dataAccessor: AdvsertisementsListDataAccess
     
-    init(dataAccessor: HTTPAdvsertisementsListDataAccessor) {
+    init(dataAccessor: AdvsertisementsListDataAccess) {
         self.dataAccessor = dataAccessor
     }
     
     func fetchAdvertisementList(completion: @escaping (Result<[AdvertisementEntity], BusinessError>) -> Void) {
-        dataAccessor.fetchAdvertisementList { (result: Result<[AdvertisementModel], HTTPAdvsertisementsListDataAccessor.Err>) in
+        dataAccessor.fetchAdvertisementList { (result: Result<[AdvertisementModel], Error>) in
             completion(
                 result.map { models -> [AdvertisementEntity] in
                     models.map(AdvertisementEntity.init)
                 }
-                .mapError { httpError -> BusinessError in
-                    BusinessError.makeFromHttpError(httpError)
+                .mapError { error -> BusinessError in
+                    guard let httpError = error as? HTTPError else {
+                        return BusinessError.unknown(error as NSError)
+                    }
+                    return BusinessError.makeFromHttpError(httpError)
                 }
             )
         }

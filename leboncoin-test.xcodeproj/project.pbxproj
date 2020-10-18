@@ -59,6 +59,7 @@
 		51E8CC602536FB6500DC5627 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E8CC5F2536FB6500DC5627 /* RootCoordinator.swift */; };
 		51E8CC6825370DFD00DC5627 /* HTTPErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E8CC6725370DFD00DC5627 /* HTTPErrorTests.swift */; };
 		51ED4E5C253C87F900B86739 /* AdvertisementListBusinessServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51ED4E5B253C87F900B86739 /* AdvertisementListBusinessServiceTests.swift */; };
+		51ED4E64253CD51700B86739 /* HTTPAdvsertisementsListDataAccessorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51ED4E63253CD51700B86739 /* HTTPAdvsertisementsListDataAccessorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +138,7 @@
 		51E8CC5F2536FB6500DC5627 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		51E8CC6725370DFD00DC5627 /* HTTPErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPErrorTests.swift; sourceTree = "<group>"; };
 		51ED4E5B253C87F900B86739 /* AdvertisementListBusinessServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementListBusinessServiceTests.swift; sourceTree = "<group>"; };
+		51ED4E63253CD51700B86739 /* HTTPAdvsertisementsListDataAccessorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPAdvsertisementsListDataAccessorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,6 +271,7 @@
 			children = (
 				51E8CC6725370DFD00DC5627 /* HTTPErrorTests.swift */,
 				51ED4E5B253C87F900B86739 /* AdvertisementListBusinessServiceTests.swift */,
+				51ED4E63253CD51700B86739 /* HTTPAdvsertisementsListDataAccessorTests.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -882,6 +885,7 @@
 			files = (
 				5100627E253C51A900B13C2A /* AdvertisementListViewModelTests.swift in Sources */,
 				51E8CC6825370DFD00DC5627 /* HTTPErrorTests.swift in Sources */,
+				51ED4E64253CD51700B86739 /* HTTPAdvsertisementsListDataAccessorTests.swift in Sources */,
 				51AF534E253C5C040083E2B9 /* DataFactory.swift in Sources */,
 				51ED4E5C253C87F900B86739 /* AdvertisementListBusinessServiceTests.swift in Sources */,
 				51AF535A253C81320083E2B9 /* DataFormatterTests.swift in Sources */,

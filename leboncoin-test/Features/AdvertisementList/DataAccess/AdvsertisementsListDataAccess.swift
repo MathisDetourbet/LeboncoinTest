@@ -8,21 +8,19 @@
 import Foundation
 
 protocol AdvsertisementsListDataAccess {
-    associatedtype Err: Error
-    func fetchAdvertisementList(completion: @escaping (Result<[AdvertisementModel], Err>) -> Void)
+    func fetchAdvertisementList(completion: @escaping (Result<[AdvertisementModel], Error>) -> Void)
 }
 
 struct HTTPAdvsertisementsListDataAccessor: AdvsertisementsListDataAccess {
-    typealias Err = HTTPError
-    private let httpService: HTTPService
+    private let httpService: NetworkLayer
     private let httpConfiguration: Configuration
     
-    init(httpService: HTTPService, httpConfiguration: Configuration) {
+    init(httpService: NetworkLayer, httpConfiguration: Configuration) {
         self.httpService = httpService
         self.httpConfiguration = httpConfiguration
     }
     
-    func fetchAdvertisementList(completion: @escaping (Result<[AdvertisementModel], Err>) -> Void) {
+    func fetchAdvertisementList(completion: @escaping (Result<[AdvertisementModel], Error>) -> Void) {
         let httpRequest = HTTPRequest(
             baseUrl: httpConfiguration.urlScheme,
             endPoint: .advertisementsList,

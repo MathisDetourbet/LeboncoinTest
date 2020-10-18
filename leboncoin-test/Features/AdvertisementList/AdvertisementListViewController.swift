@@ -44,7 +44,7 @@ final class AdvertisementListViewController: UIViewController {
     // MARK: Setup views, alerts, activity, navbar item
     private func setupView() {
         view.backgroundColor = .white
-        navigationItem.title = "Advertisements list"
+        navigationItem.title = "Advertisements"
         
         collectionView = makeCollectionView()
         setupRemoveFilterButton()

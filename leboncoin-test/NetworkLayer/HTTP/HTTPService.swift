@@ -8,14 +8,15 @@
 import Foundation
 
 final class HTTPService: NetworkLayer {
-    typealias Request = HTTPRequest
-    typealias Err = HTTPError
-    
     private static let successCodeRange = 200..<300
-    
     private let session = URLSession(configuration: .default)
     
-    func sendRequest<T: Decodable>(_ httpRequest: Request, completion: @escaping NetworkCompletion<T, Err>) {
+    func sendRequest<T: Decodable>(_ httpRequest: NetworkRequest, completion: @escaping NetworkCompletion<T, Error>) {
+        guard let httpRequest = httpRequest as? HTTPRequest else {
+            completion(.failure(HTTPError.badRequest))
+            return
+        }
+        
         let urlRequest: URLRequest
         do {
             urlRequest = try URLRequest.makeFromHTTPRequest(httpRequest)

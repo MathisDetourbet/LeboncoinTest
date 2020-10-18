@@ -8,26 +8,28 @@
 import XCTest
 @testable import leboncoin_test
 
-fileprivate struct MockConfiguration: Configuration {
-    var netProtocol: String = ""
-    var domain: String = ""
-    var path: String = ""
+fileprivate struct MockDataAccess: AdvsertisementsListDataAccess {
+    let fetchExpectation: XCTestExpectation?
+    
+    func fetchAdvertisementList(completion: @escaping (Result<[AdvertisementModel], Error>) -> Void) {
+        fetchExpectation?.fulfill()
+    }
 }
 
 final class AdvertisementListBusinessServiceTests: XCTestCase {
     
     private var adsListBusinessService: AdvertisementListBusinessService!
 
-    override func setUpWithError() throws {
-        let configuration = MockConfiguration()
-        let httpService = HTTPService()
-        let dataAccessor = HTTPAdvsertisementsListDataAccessor(httpService: httpService, httpConfiguration: configuration)
+    override func setUpWithError() throws {}
+    override func tearDownWithError() throws {}
+    
+    func test_fetchAdsList_should_call_dataAccessor() {
+        let fetchExpectation = expectation(description: "expectation: call dataAccessor fetchAdvertisementList method")
+        let dataAccessor = MockDataAccess(fetchExpectation: fetchExpectation)
         adsListBusinessService = AdvertisementListBusinessService(dataAccessor: dataAccessor)
+        
+        adsListBusinessService.fetchAdvertisementList { _ in }
+        
+        waitForExpectations(timeout: 0.1, handler: nil)
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-    
-    
 }
