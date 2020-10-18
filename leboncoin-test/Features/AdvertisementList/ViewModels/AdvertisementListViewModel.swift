@@ -28,7 +28,7 @@ final class AdvertisementListViewModel: TableOrCollectionViewModel {
     /// Category selected by the user, nil by default. When set, view model will process (sort, filter) the viewable ads list.
     private var categorySelected: CategoryEntity? {
         didSet {
-            shouldDisplayRemoveFilterButton?(categorySelected != nil ? true : false)
+            shouldDisplayRemoveFilterButton?(categorySelected != nil)
             processViewableList()
         }
     }
