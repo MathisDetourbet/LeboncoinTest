@@ -155,6 +155,7 @@ final class AdvertisementCollectionViewCell: UICollectionViewCell {
         categoryPictoLabel.contentMode = .scaleAspectFit
         categoryPictoLabel.translatesAutoresizingMaskIntoConstraints = false
         secondLineStackView.addArrangedSubview(categoryPictoLabel)
+        categoryPictoLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     }
 }
 
