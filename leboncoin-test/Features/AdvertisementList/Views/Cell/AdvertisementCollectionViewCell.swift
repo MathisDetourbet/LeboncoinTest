@@ -148,6 +148,8 @@ final class AdvertisementCollectionViewCell: UICollectionViewCell {
         
         priceLabel = UILabel()
         priceLabel.numberOfLines = 1
+        priceLabel.textColor = .orange
+        priceLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
         secondLineStackView.addArrangedSubview(priceLabel)
         

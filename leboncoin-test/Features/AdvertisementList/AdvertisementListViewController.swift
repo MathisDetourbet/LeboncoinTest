@@ -156,7 +156,7 @@ private extension AdvertisementListViewController {
         static let numberOfItemByRow:           Int = 2
         static let cellAspectRatio:             CGFloat = 3/2
         static let minimumItemsSpacing:         CGFloat = 5.0
-        static let minimumLineSpacing:          CGFloat = 5.0
+        static let minimumLineSpacing:          CGFloat = 30.0
         static let collectionHorizontalInset:   CGFloat = 5.0
         static let collectionViewMargins:       CGFloat = 5.0
     }

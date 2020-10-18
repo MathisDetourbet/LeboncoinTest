@@ -31,7 +31,7 @@ final class AdvertisementListViewModel: TableOrCollectionViewModel {
     /// Closure called when new data is available and ready to be displayed
     var newDataAvailable: (() -> Void)?
     
-    /// Closure which indicate if the remove filter button should be displayed or not.
+    /// Closure indicates if the remove filter button should be displayed or not.
     var shouldDisplayRemoveFilterButton: ((Bool) -> Void)?
     
     init(businessService: IAdvertisementListBusinessService) {
