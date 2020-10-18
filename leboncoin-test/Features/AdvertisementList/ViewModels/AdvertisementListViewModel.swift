@@ -54,7 +54,7 @@ final class AdvertisementListViewModel: TableOrCollectionViewModel {
         }
     }
     
-    func removeFilter() {
+    func removeCategoryFilter() {
         categorySelected = nil
     }
     

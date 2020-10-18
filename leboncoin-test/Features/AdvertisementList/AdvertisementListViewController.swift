@@ -114,7 +114,7 @@ final class AdvertisementListViewController: UIViewController {
     @objc
     private func userDidSelectRemoveFilterButton() {
         activityIndicatorView.startAnimating()
-        viewModel.removeFilter()
+        viewModel.removeCategoryFilter()
     }
 }
 

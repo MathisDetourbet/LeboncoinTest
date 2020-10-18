@@ -10,7 +10,7 @@ import Foundation
 struct AdvertisementEntity {
     let id: UInt
     let title: String
-    let price: UInt
+    let price: Double
     let category: CategoryEntity?
     let description: String
     let imageEntity: ImageEntity

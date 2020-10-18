@@ -42,8 +42,8 @@ extension DataFormatter: CurrencyFormattor {
         case badCurrencyNumber
     }
     
-    func currency(from unsignedInt: UInt) throws -> String {
-        guard let currencyString = currencyFormatter.string(from: NSNumber(value: unsignedInt)) else {
+    func currency(from double: Double) throws -> String {
+        guard let currencyString = currencyFormatter.string(from: NSNumber(value: double)) else {
             throw CurrencyFormatterError.badCurrencyNumber
         }
         

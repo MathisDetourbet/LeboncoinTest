@@ -12,7 +12,7 @@ struct AdvertisementModel {
     let categoryId: UInt
     let title: String
     let description: String
-    let price: UInt
+    let price: Double
     let imageModel: ImageModel
     let creationDate: String
     let isUrgent: Bool

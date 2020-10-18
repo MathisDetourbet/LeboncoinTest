@@ -8,5 +8,5 @@
 import Foundation
 
 protocol CurrencyFormattor {
-    func currency(from unsignedInt: UInt) throws -> String
+    func currency(from double: Double) throws -> String
 }

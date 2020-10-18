@@ -11,7 +11,7 @@ protocol IAdvertisementListBusinessService {
     func fetchAdvertisementList(completion: @escaping (Result<[AdvertisementEntity], BusinessError>) -> Void)
 }
 
-class AdvertisementListBusinessService: IAdvertisementListBusinessService {
+final class AdvertisementListBusinessService: IAdvertisementListBusinessService {
     private let dataAccessor: HTTPAdvsertisementsListDataAccessor
     
     init(dataAccessor: HTTPAdvsertisementsListDataAccessor) {
