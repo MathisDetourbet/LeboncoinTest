@@ -60,6 +60,7 @@
 		51E8CC6825370DFD00DC5627 /* HTTPErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E8CC6725370DFD00DC5627 /* HTTPErrorTests.swift */; };
 		51ED4E5C253C87F900B86739 /* AdvertisementListBusinessServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51ED4E5B253C87F900B86739 /* AdvertisementListBusinessServiceTests.swift */; };
 		51ED4E64253CD51700B86739 /* HTTPAdvsertisementsListDataAccessorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51ED4E63253CD51700B86739 /* HTTPAdvsertisementsListDataAccessorTests.swift */; };
+		51ED4E69253CDC1800B86739 /* RootCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51ED4E68253CDC1800B86739 /* RootCoordinatorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +140,7 @@
 		51E8CC6725370DFD00DC5627 /* HTTPErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPErrorTests.swift; sourceTree = "<group>"; };
 		51ED4E5B253C87F900B86739 /* AdvertisementListBusinessServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementListBusinessServiceTests.swift; sourceTree = "<group>"; };
 		51ED4E63253CD51700B86739 /* HTTPAdvsertisementsListDataAccessorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPAdvsertisementsListDataAccessorTests.swift; sourceTree = "<group>"; };
+		51ED4E68253CDC1800B86739 /* RootCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinatorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,9 +187,10 @@
 		51006299253C56BE00B13C2A /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				51AF5358253C81240083E2B9 /* Utils */,
-				51AF5357253C80FD0083E2B9 /* Services */,
 				51AF5355253C80E80083E2B9 /* Features */,
+				51AF5357253C80FD0083E2B9 /* Services */,
+				51ED4E70253CDD5000B86739 /* NavigationLayer */,
+				51AF5358253C81240083E2B9 /* Utils */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -703,6 +706,14 @@
 			path = LaunchScreen;
 			sourceTree = "<group>";
 		};
+		51ED4E70253CDD5000B86739 /* NavigationLayer */ = {
+			isa = PBXGroup;
+			children = (
+				51ED4E68253CDC1800B86739 /* RootCoordinatorTests.swift */,
+			);
+			path = NavigationLayer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -889,6 +900,7 @@
 				51AF534E253C5C040083E2B9 /* DataFactory.swift in Sources */,
 				51ED4E5C253C87F900B86739 /* AdvertisementListBusinessServiceTests.swift in Sources */,
 				51AF535A253C81320083E2B9 /* DataFormatterTests.swift in Sources */,
+				51ED4E69253CDC1800B86739 /* RootCoordinatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
