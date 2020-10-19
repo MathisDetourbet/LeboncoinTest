@@ -22,7 +22,7 @@ protocol AdvertisementDetailsViewUIModel {
     var isUrgentString: String          { get }
 }
 
-// MARK: - Advertisement cell UI model conformance: can fill this kind of cell
+// MARK: - AdvertisementDetails View  UI model conformance: can fill this kind of view
 extension AdvertisementViewModel: AdvertisementDetailsViewUIModel {
     
     var idString: String            { "id: \(model.id)" }

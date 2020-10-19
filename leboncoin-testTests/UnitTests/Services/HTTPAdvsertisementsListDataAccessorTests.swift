@@ -18,7 +18,7 @@ fileprivate struct MockHTTPService: NetworkLayer {
     let fetchHTTPServiceExpectation: XCTestExpectation?
     let fetchHTTPRequestExpectation: XCTestExpectation?
     
-    func sendRequest<T>(_ request: NetworkRequest, completion: @escaping NetworkCompletion<T, Error>) where T : Decodable {
+    func sendRequest<T>(_ request: NetworkRequest, completion: @escaping NetworkCompletion<T>) where T : Decodable {
         fetchHTTPServiceExpectation?.fulfill()
         
         if let httpRequest = request as? HTTPRequest,

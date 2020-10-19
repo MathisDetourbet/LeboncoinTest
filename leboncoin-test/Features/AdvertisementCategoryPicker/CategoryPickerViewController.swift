@@ -17,10 +17,7 @@ final class CategoryPickerViewController: UIViewController {
     private let viewModel: CategoryPickerViewModel
     private weak var delegate: CategoryPickerDelegate?
     
-    static func prompt(
-        on viewController: UIViewController,
-        delegate: CategoryPickerDelegate
-    ) {
+    static func prompt(on viewController: UIViewController, delegate: CategoryPickerDelegate) {
         let vc = CategoryPickerViewController()
         vc.delegate = delegate
         viewController.present(vc, animated: true, completion: nil)

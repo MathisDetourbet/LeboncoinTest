@@ -11,7 +11,7 @@ final class HTTPService: NetworkLayer {
     private static let successCodeRange = 200..<300
     private let session = URLSession(configuration: .default)
     
-    func sendRequest<T: Decodable>(_ httpRequest: NetworkRequest, completion: @escaping NetworkCompletion<T, Error>) {
+    func sendRequest<T: Decodable>(_ httpRequest: NetworkRequest, completion: @escaping NetworkCompletion<T>) {
         guard let httpRequest = httpRequest as? HTTPRequest else {
             completion(.failure(HTTPError.badRequest))
             return

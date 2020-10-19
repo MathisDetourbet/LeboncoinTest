@@ -20,7 +20,7 @@ final class AdvertisementListViewController: UIViewController {
     
     // MARK: Data property
     private let viewModel: AdvertisementListViewModel
-    private weak var routingDelegate: AdvertisementListRoutingDelegate?
+    public weak var routingDelegate: AdvertisementListRoutingDelegate?
     
     init(viewModel: AdvertisementListViewModel, routingDelegate: AdvertisementListRoutingDelegate?) {
         self.viewModel = viewModel
@@ -47,8 +47,8 @@ final class AdvertisementListViewController: UIViewController {
         navigationItem.title = "Advertisements"
         
         collectionView = makeCollectionView()
-        setupRemoveFilterButton()
         setupFilterNavigationBarItem()
+        setupRemoveFilterButton()
         setupActivityIndicator()
     }
     
@@ -65,16 +65,18 @@ final class AdvertisementListViewController: UIViewController {
     private func setupRemoveFilterButton() {
         let button = UIButton(type: .custom)
         button.setTitle("Remove filter", for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(userDidSelectRemoveFilterButton), for: .touchUpInside)
         button.isHidden = true
         button.roundedCorner()
-        button.backgroundColor = .red
+        button.backgroundColor = .orange
         button.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(button)
         
         NSLayoutConstraint.activate([
             button.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor),
-            button.topAnchor.constraint(equalTo: collectionView.topAnchor, constant: 8.0)
+            button.topAnchor.constraint(equalTo: collectionView.topAnchor, constant: 8.0),
+            button.widthAnchor.constraint(equalTo: collectionView.widthAnchor, multiplier: 0.5)
         ])
         
         self.removeFilterButton = button
@@ -221,7 +223,9 @@ extension AdvertisementListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: AdvertisementCollectionViewCell.defaultReuseIdentifier, for: indexPath) as? AdvertisementCollectionViewCell else {
+            withReuseIdentifier: AdvertisementCollectionViewCell.defaultReuseIdentifier,
+            for: indexPath
+        ) as? AdvertisementCollectionViewCell else {
             fatalError("Error cell dequeue")
         }
         

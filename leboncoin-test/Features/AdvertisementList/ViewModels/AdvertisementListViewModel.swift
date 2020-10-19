@@ -12,7 +12,7 @@ final class AdvertisementListViewModel: TableOrCollectionViewModel {
     // MARK: Inputs
     let businessService: IAdvertisementListBusinessService
     
-    /// Array of ads fetched from the API, dont use it to display it, use list property instead
+    /// Array of ads fetched from the API, dont use it to display it, use viewableList property instead
     var rawList: [AdvertisementViewModel] { didSet { processViewableList() } }
     
     /// Category selected by the user, nil by default. When set, view model will process (sort, filter) the viewable ads list.
