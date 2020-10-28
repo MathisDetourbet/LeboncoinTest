@@ -21,6 +21,8 @@ final class AdvertisementCollectionViewCell: UICollectionViewCell {
     private var categoryPictoLabel: UILabel!
     private var isUrgentPictureImageView: UIImageView!
     
+    private var imageTask: URLSessionTask?
+    
     // MARK: Inits
     init() {
         super.init(frame: .zero)
@@ -40,6 +42,7 @@ final class AdvertisementCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         adPictureImageView.image = nil
         isUrgentPictureImageView.image = nil
+        imageTask?.cancel()
     }
     
     // MARK: View setup
@@ -138,6 +141,13 @@ final class AdvertisementCollectionViewCell: UICollectionViewCell {
         
         titleLabel = UILabel()
         titleLabel.numberOfLines = 2
+        
+        if #available(iOS 13.0, *) {
+            titleLabel.textColor = .systemBackground
+        } else {
+            titleLabel.textColor = .black
+        }
+        
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         bottomStackView.addArrangedSubview(titleLabel)
         
@@ -180,7 +190,7 @@ private extension AdvertisementCollectionViewCell {
     
     func fillAdPictureImageView(with url: URL?, or defaultImageName: String) {
         let placeholderImage = UIImage(named: defaultImageName)
-        adPictureImageView.downloadImageFromURL(url, with: placeholderImage)
+        imageTask = adPictureImageView.downloadImageFromURL(url, with: placeholderImage)
     }
     
     func fillPriceLabel(with price: String) {

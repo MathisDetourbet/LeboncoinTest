@@ -9,16 +9,16 @@ import UIKit
 
 extension UIImageView {
     
-    func downloadImageFromURL(_ url: URL?, with placeholderImage: UIImage? = nil) {
+    func downloadImageFromURL(_ url: URL?, with placeholderImage: UIImage? = nil) -> URLSessionTask? {
         DispatchQueue.main.async {
             self.image = placeholderImage
         }
         
         guard let url = url else {
-            return
+            return nil
         }
         
-        ImageDownloader.download(from: url) { [weak self] (downloadedImage, httpError) in
+        return ImageDownloader.download(from: url) { [weak self] (downloadedImage, httpError) in
             guard let self = self, httpError == nil else {
                 return
             }
