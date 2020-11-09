@@ -22,7 +22,7 @@ fileprivate struct MockHTTPService: NetworkLayer {
         fetchHTTPServiceExpectation?.fulfill()
         
         if let httpRequest = request as? HTTPRequest,
-           httpRequest.method == .GET,
+           httpRequest.method == .get,
            httpRequest.endPoint == .advertisementsList,
            httpRequest.headers == nil,
            httpRequest.parameters == nil,

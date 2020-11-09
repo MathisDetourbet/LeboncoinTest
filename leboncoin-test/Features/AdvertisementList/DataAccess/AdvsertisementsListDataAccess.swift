@@ -24,7 +24,7 @@ struct HTTPAdvsertisementsListDataAccessor: AdvsertisementsListDataAccess {
         let httpRequest = HTTPRequest(
             baseUrl: httpConfiguration.urlScheme,
             endPoint: .advertisementsList,
-            method: .GET,
+            method: .get,
             headers: nil,
             parameters: nil
         )
